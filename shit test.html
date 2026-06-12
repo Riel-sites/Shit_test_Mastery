@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Shit Test Decoder | Amused Frame Control Mastery</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0f1e;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(125deg, #0a0f1e, #141b2b, #1a1f2f, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientFlow 18s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 40%, rgba(255, 100, 100, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .glass-nav {
+            position: fixed;
+            top: 20px;
+            left: 5%;
+            right: 5%;
+            width: 90%;
+            background: rgba(15, 25, 45, 0.7);
+            backdrop-filter: blur(16px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            padding: 0.8rem 2rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: transparent !important;
+            color: #FFD166;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .logo i {
+            color: #FF6B6B;
+            background: transparent;
+            font-size: 1.4rem;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #f0f3fa;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover { color: #FFB347; }
+        .nav-links a.active-tab { color: #FFB347; }
+        .nav-links a.active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #FFB347, #FF6B6B);
+            border-radius: 2px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active { visibility: visible; opacity: 1; }
+        .mobile-menu-container {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: rgba(15, 25, 45, 0.95);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2001;
+            transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+        }
+        .mobile-menu-container.open { right: 0; }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,200,0.2);
+        }
+        .mobile-menu-header .logo-small { font-size: 1.3rem; font-weight: 800; color: #FFD166; }
+        .close-menu-btn { background: none; border: none; color: #FFB347; font-size: 1.5rem; cursor: pointer; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 1.5rem; }
+        .mobile-nav-links a {
+            color: #f0f3fa;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+        }
+        .mobile-nav-links a:hover, .mobile-nav-links a.active-tab-mobile {
+            color: #FFB347;
+            border-left-color: #FFB347;
+            background: rgba(255, 180, 80, 0.1);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-content {
+            max-width: 800px;
+            background: rgba(10, 20, 30, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,240,0.25);
+            animation: fadeUp 0.8s ease;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-content h1 {
+            font-family: 'Caveat', 'Playfair Display', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: transparent !important;
+            color: #FFE6B0;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; color: #f0f3ff; text-shadow: 0 1px 4px rgba(0,0,0,0.3); font-weight: 500; }
+        .cta-btn {
+            background: linear-gradient(95deg, #FF6B6B, #FF8E53);
+            border: none;
+            padding: 1rem 2.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 20px -5px rgba(255, 107, 107, 0.4);
+        }
+        .cta-btn:hover { transform: scale(1.02); box-shadow: 0 15px 25px -5px rgba(255, 107, 107, 0.6); }
+
+        .tab-content { display: none; background: transparent; padding: 5rem 2rem; }
+        .tab-content.active-tab-content { display: block; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            display: inline-block;
+            width: auto;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFE6B0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .stage-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; margin-top: 1rem; }
+        .stage-chip {
+            background: rgba(255,255,245,0.08);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,255,200,0.2);
+        }
+        .stage-chip:hover {
+            background: rgba(255, 200, 120, 0.2);
+            border-color: rgba(255, 200, 100, 0.6);
+            box-shadow: 0 0 15px rgba(255, 180, 80, 0.4);
+            transform: translateY(-2px);
+        }
+        .stage-chip.active {
+            background: linear-gradient(135deg, #e65c00, #FF8C42);
+            color: #ffffff;
+            border-color: #FFD966;
+            box-shadow: 0 0 20px rgba(230, 92, 0, 0.6);
+        }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .test-card {
+            background: rgba(20, 30, 48, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,210,0.2);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 200, 100, 0.7);
+            box-shadow: 0 0 25px rgba(255, 180, 80, 0.3);
+            background: rgba(30, 45, 70, 0.7);
+        }
+        .test-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1rem; border-bottom: 1px dashed rgba(255,215,150,0.4); padding-bottom: 0.5rem; }
+        .stage-badge { background: #FF8C42; color: #0a0f1e; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.8rem; border-radius: 20px; }
+        .test-quote { font-size: 1rem; font-weight: 600; margin: 1rem 0; color: #FFF3E0; font-style: italic; border-left: 3px solid #FF9F4A; padding-left: 1rem; }
+        .response-buttons { display: flex; gap: 0.8rem; margin: 1rem 0; flex-wrap: wrap; }
+        .resp-btn {
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,160,80,0.7);
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #FFD9A5;
+        }
+        .resp-btn:hover { transform: translateY(-2px); box-shadow: 0 0 12px rgba(255, 180, 80, 0.5); background: rgba(0,0,0,0.7); }
+        .resp-btn.good { border-color: #6BCB77; color: #C8FFC8; }
+        .resp-btn.bad { border-color: #FF6B6B; color: #FFBEBE; }
+        .resp-btn.frame { border-color: #4D9DE0; color: #C2E4FF; }
+        .response-content { background: rgba(0, 0, 0, 0.65); border-radius: 1.2rem; padding: 1rem; margin-top: 0.8rem; font-size: 0.9rem; border-left: 3px solid #FFB347; }
+        .hidden-resp { display: none; }
+        .reset-all-btn { display: block; margin: 2rem auto 0; background: #2C3E66; border: none; padding: 0.8rem 2rem; border-radius: 3rem; color: white; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
+        .reset-all-btn:hover { background: #FF6B6B; box-shadow: 0 0 18px rgba(255, 107, 107, 0.5); transform: scale(1.02); }
+        
+        /* Ebook Page Styles */
+        .ebook-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(20, 30, 48, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,210,0.2);
+            padding: 2.5rem;
+        }
+        .ebook-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .ebook-header h2 {
+            font-family: 'Caveat', cursive;
+            font-size: 2.8rem;
+            color: #FFD966;
+            margin-bottom: 0.5rem;
+        }
+        .ebook-header p {
+            color: #c0c8e0;
+        }
+        .ebook-preview {
+            background: rgba(0,0,0,0.4);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #FF8C42;
+        }
+        .ebook-preview h3 {
+            color: #FFB347;
+            margin-bottom: 1rem;
+        }
+        .ebook-preview ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .ebook-preview li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed rgba(255,255,200,0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .ebook-preview li i {
+            color: #6BCB77;
+            width: 24px;
+        }
+        .download-btn {
+            display: block;
+            width: fit-content;
+            margin: 2rem auto 0;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
+        }
+        .ebook-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .feature-badge {
+            background: rgba(255,255,245,0.1);
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(255,200,100,0.3);
+        }
+        
+        footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #b0bad5; border-top: 1px solid rgba(255,255,200,0.1); margin-top: 2rem; }
+
+        @media (max-width: 680px) {
+            .glass-nav { flex-direction: row; justify-content: space-between; padding: 0.7rem 1.2rem; width: 92%; left: 4%; right: 4%; }
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.6rem; padding: 0.5rem 1.2rem; }
+            .ebook-container { padding: 1.5rem; margin: 0 1rem; }
+            .ebook-header h2 { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="animated-bg"></div>
+
+<nav class="glass-nav">
+    <div class="logo"><span><i class="fas fa-dragon"></i> ShitTest.Guru</span></div>
+    <div class="nav-links" id="desktopNavLinks">
+        <a data-tab="heroTab" class="active-tab">🏠 Home</a>
+        <a data-tab="decoderTab">📖 Shit Test Decoder</a>
+        <a data-tab="masteryTab">🧠 Amused Mastery</a>
+        <a data-tab="ebookTab">📘 Free Ebook</a>
+    </div>
+    <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+</nav>
+
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <div class="mobile-menu-header"><span class="logo-small"><i class="fas fa-dragon"></i> ShitTest</span><button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
+        <div class="mobile-nav-links" id="mobileNavLinks">
+            <a data-tab="heroTab">🏠 Home</a>
+            <a data-tab="decoderTab">📖 Shit Test Decoder</a>
+            <a data-tab="masteryTab">🧠 Amused Mastery</a>
+            <a data-tab="ebookTab">📘 Free Ebook</a>
+        </div>
+    </div>
+</div>
+
+<div id="heroTab" class="tab-content active-tab-content">
+    <section class="hero"><div class="hero-content"><h1>⚔️ Master The Shit Test Universe ⚔️</h1><p>500+ unique verbal curveballs from first text to “til death do you part” — including Comfort, Value, Qualification & Boundary tests. Amused mastery, frame control & hilarious recovery.</p><button class="cta-btn" id="heroCtaBtn">🔥 Enter the Decoder →</button></div></section>
+</div>
+
+<div id="decoderTab" class="tab-content"><div class="container"><h2 class="section-title">⚡ Shit Test Decoder ⚡</h2><div class="stage-filters" id="stageFilters"></div><div class="cards-grid" id="cardsGrid"></div><button class="reset-all-btn" id="resetAllResponsesBtn"><i class="fas fa-undo-alt"></i> Reset all responses</button><footer>🎯 Over 500 unique shit tests — click buttons to reveal Good Responses, Bad Reply & Frame Control.</footer></div></div>
+
+<div id="masteryTab" class="tab-content"><div class="container" style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;"><h2 class="section-title" style="margin-bottom: 2rem;">🧘 Amused Mastery & Frame Control</h2><div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div class="test-card"><i class="fas fa-smile-wink" style="font-size: 2rem; color: #FFB347;"></i><h3>The Golden Rule</h3><p>She throws a shit test to see if you’ll crumble. Amused mastery means you treat every test as a joke. You're the game master. Frame = reality you choose.</p></div>
+    <div class="test-card"><i class="fas fa-chess-queen" style="font-size: 2rem; color: #6BCB77;"></i><h3>Frame Control 101</h3><p>Never accept her frame. If she says "you're cheap", your frame: "I'm selectively generous." The master never defends, he redefines.</p></div>
+    <div class="test-card"><i class="fas fa-comment-dots" style="font-size: 2rem; color: #FF8E53;"></i><h3>5 Core Response Archetypes</h3><p>Amplify | Agree & exaggerate | Misdirect with absurdity | Label the test | Reframe to "us"</p></div>
+    <div class="test-card"><i class="fas fa-skull" style="font-size: 2rem; color: #FF6B6B;"></i><h3>Why Bad Replies Fail</h3><p>Defensiveness = guilt. Over-explaining = weakness. Apologizing = loss of frame. Amused Mastery laughs at the test itself.</p></div>
+</div><footer>📜 Practice amused neutrality until it becomes reflex.</footer></div></div>
+
+<!-- Ebook Download Page -->
+<div id="ebookTab" class="tab-content">
+    <div class="container">
+        <div class="ebook-container">
+            <div class="ebook-header">
+                <h2><i class="fas fa-book-open"></i> Shit Test Mastery Ebook</h2>
+                <p>The complete guide to passing every test from first text to marriage — with humor, frame control, and zero neediness.</p>
+            </div>
+            
+            <div class="ebook-features">
+                <span class="feature-badge"><i class="fas fa-check-circle"></i> 500+ Real Examples</span>
+                <span class="feature-badge"><i class="fas fa-brain"></i> Frame Control Mastery</span>
+                <span class="feature-badge"><i class="fas fa-laugh"></i> Amused Response Scripts</span>
+                <span class="feature-badge"><i class="fas fa-chart-line"></i> From First Contact to Marriage</span>
+            </div>
+            
+            <div class="ebook-preview">
+                <h3><i class="fas fa-file-alt"></i> What's Inside:</h3>
+                <ul>
+                    <li><i class="fas fa-comment"></i> <strong>First Contact Tests</strong> — Low-energy openers, "are you a creep?" and resume requests</li>
+                    <li><i class="fas fa-heart"></i> <strong>Dating Stage Landmines</strong> — The bill trap, ex-boyfriend bombs, "would you fight for me?"</li>
+                    <li><i class="fas fa-home"></i> <strong>Relationship Chaos</strong> — Chore wars, silent treatment, social media stalking</li>
+                    <li><i class="fas fa-ring"></i> <strong>Married Life Black Belts</strong> — "We need to talk" pranks, parenting blame, hobby vs. her</li>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Comfort Tests</strong> — Reassurance without groveling</li>
+                    <li><i class="fas fa-trophy"></i> <strong>Value Tests</strong> — Status challenges and how to stay unfazed</li>
+                    <li><i class="fas fa-clipboard-list"></i> <strong>Qualification Tests</strong> — "What do you bring to the table?" answered playfully</li>
+                    <li><i class="fas fa-ban"></i> <strong>Boundary Tests</strong> — "Cancel your plans for me" and phone password demands</li>
+                </ul>
+            </div>
+            
+            <div class="ebook-preview" style="margin-top: 1rem;">
+                <h3><i class="fas fa-graduation-cap"></i> Bonus: The Amused Mastery Cheat Sheet</h3>
+                <ul>
+                    <li><i class="fas fa-smile"></i> The 5 response archetypes that work every time</li>
+                    <li><i class="fas fa-skull-crossbones"></i> Why bad replies fail (and make it worse)</li>
+                    <li><i class="fas fa-chess-board"></i> Frame control drills to stay unshakeable</li>
+                    <li><i class="fas fa-quote-right"></i> 50+ ready-to-use one-liners for any situation</li>
+                </ul>
+            </div>
+            
+            <button id="downloadEbookBtn" class="download-btn"><i class="fas fa-download"></i> Download Free Ebook (PDF)</button>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #8a96b5;"><i class="fas fa-lock"></i> No email required. Instant download.</p>
+        </div>
+        <footer>📖 Master the art of amused indifference — download your free copy today.</footer>
+    </div>
+</div>
+
+<script>
+    // ========== EBOOK GENERATION FUNCTION ==========
+    function generateEbookContent() {
+        return `Shit Test Mastery: The Complete Guide
+================================
+
+By ShitTest.Guru
+
+TABLE OF CONTENTS
+-----------------
+1. Introduction: What Is a Shit Test?
+2. The Golden Rule: Amused Mastery
+3. First Contact Tests (Texting & Apps)
+4. Dating Stage Landmines
+5. Relationship Chaos
+6. Married Life Black Belts
+7. Comfort Tests (Seeking Reassurance)
+8. Value Tests (Status & Worth)
+9. Qualification Tests (Standards & Expectations)
+10. Boundary Tests (Pushing Limits)
+11. Frame Control 101
+12. The Ultimate Cheat Sheet
+
+
+CHAPTER 1: INTRODUCTION
+-----------------------
+A shit test is not abuse. It's subconscious vetting. Women throw these to see if you have:
+1. Emotional stability
+2. Frame control
+3. Humor under pressure
+4. Leadership
+
+The Golden Rule: She doesn't want a "correct answer." She wants to see if you stay cool, amused, and unbothered. The moment you defend yourself like a politician, you've failed.
+
+
+CHAPTER 2: FIRST CONTACT TESTS
+------------------------------
+Test: "Hey." (low energy)
+Bad: "Hey beautiful! I'm Mike, I like tacos."
+Good: "Whoa, save some charisma. I'll wait for part two."
+Frame: You're the prize. She needs to catch up.
+
+Test: "Do you always message random women at night?"
+Bad: "No I swear I'm not creepy!"
+Good: "Only on nights with a full moon. Otherwise, carrier pigeons."
+Frame: Amused, unfazed, you're vetting her too.
+
+Test: "Why are you single?"
+Bad: "I don't know, I'm too caring I guess."
+Good: "My pet tarantula gives terrible relationship advice."
+Frame: Single by choice, not defect.
+
+
+CHAPTER 3: DATING STAGE LANDMINES
+--------------------------------
+Test: "You're paying, right?"
+Bad: "Umm I thought we'd split?"
+Good: "Absolutely. And you're buying dessert with an embarrassing story."
+Frame: Generous leader + playful.
+
+Test: "My ex used to do that same thing."
+Bad: "I'm not him! Do you still love him?"
+Good: "Oh yeah? My ex collected porcelain dolls. What was his weirdest habit?"
+Frame: Treat ex as sitcom character.
+
+Test: "Would you fight a guy who insults me?"
+Bad: "Of course I'd destroy him!"
+Good: "I'd challenge him to a yo-yo duel. Undefeated."
+Frame: Clever protector, not brute.
+
+
+CHAPTER 4: COMFORT TESTS (Seeking Reassurance)
+----------------------------------------------
+Test: "Do you even like me? Or am I just convenient?"
+Bad: "Of course I like you! You're amazing!"
+Good: "I like you. I also like pizza. But I don't share my pizza with just anyone."
+Frame: Reassure with humor, not desperation.
+
+Test: "You're going to leave me eventually, aren't you?"
+Bad: "No never! I promise I'll never leave you!"
+Good: "Probably. But first I'm going to annoy you for at least 40 more years."
+Frame: Acknowledge fear playfully, demonstrate long-term commitment.
+
+
+CHAPTER 5: VALUE TESTS (Status & Worth)
+--------------------------------------
+Test: "You don't make enough money to date me."
+Bad: "I'm working hard! I'll get a promotion!"
+Good: "Good thing my personality is currency. I'm a billionaire."
+Frame: Your worth isn't financial.
+
+Test: "You're not really my type."
+Bad: "What is your type? I can change!"
+Good: "Good. My type is 'disappointment.' So we're both breaking patterns."
+Frame: Unfazed. Your value doesn't depend on her categories.
+
+
+CHAPTER 6: QUALIFICATION TESTS
+-----------------------------
+Test: "What do you bring to the table?"
+Bad: "I'm loyal, caring, I have a job..."
+Good: "I bring jokes, questionable dance moves, and I'm really good at killing spiders."
+Frame: She qualifies to YOU, not the other way around.
+
+Test: "Can you handle a strong woman?"
+Bad: "Of course! I love strong women!"
+Good: "Strong? Good. I need someone who can open jars. My hand strength is embarrassing."
+Frame: Treat it as a partnership, not a challenge.
+
+
+CHAPTER 7: BOUNDARY TESTS
+------------------------
+Test: "Cancel your plans and come see me tonight."
+Bad: "Okay... I guess I can reschedule."
+Good: "Bold move. I like it. But my plans are also bold. How about Thursday?"
+Frame: Hold your frame. Don't abandon your life.
+
+Test: "Give me your phone password."
+Bad: "Uh... it's 1234. But don't go through my stuff!"
+Good: "Nice try. My phone contains state secrets and terrible selfies."
+Frame: Playful deflection. Privacy is healthy.
+
+
+CHAPTER 8: FRAME CONTROL MASTERY
+-------------------------------
+Every shit test follows hidden questions:
+1. "Are you confident?" → Don't chase.
+2. "Can you handle my negativity?" → Amplify or deflect.
+3. "Are you easily shaken?" → Stay calm. Validate briefly.
+4. "Will you lead without controlling?" → Make a decision. Make it funny.
+5. "Are you still fun?" → Say yes, then add absurd condition.
+
+THE MASTER'S MINDSET
+You will fail tests. That's fine.
+The master isn't the one who never fails. The master is the one who laughs mid-fail.
+
+"When in doubt, make it weirder."
+
+© ShitTest.Guru — All rights reserved. Go forth and confuse her beautifully.`;
+    }
+
+    // Download functionality
+    document.getElementById("downloadEbookBtn")?.addEventListener("click", function() {
+        const content = generateEbookContent();
+        const blob = new Blob([content], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Shit_Test_Mastery_Ebook.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        // Show temporary success feedback
+        const btn = document.getElementById("downloadEbookBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+    });
+
+    // Shit Test Database (abridged for decoder functionality)
+    const stagesList = ["First Contact", "Dating Stage", "Relationship", "Married Life", "Living Together", "Texting", "Comfort Tests", "Value Tests", "Qualification Tests", "Boundary Tests"];
+    
+    // Sample tests for decoder (keeping functionality intact)
+    const sampleTests = [
+        { stage: "First Contact", text: "Hey. (one word opener)", bad: "Hey beautiful! I'm Mike!", good1: "Whoa, save some charisma. I'll wait for part two.", good2: "Bold strategy. Let's see if it pays off.", frame: "Frame: you're the prize." },
+        { stage: "Comfort Tests", text: "Do you even like me?", bad: "Of course! You're amazing!", good1: "I like you. I also like pizza. Elite circle.", good2: "Like you? I tolerate you. That's deeper.", frame: "Frame: Reassure with humor." },
+        { stage: "Value Tests", text: "You don't make enough money.", bad: "I'll work harder!", good1: "Good thing my personality is currency.", good2: "Money is temporary. Dad jokes are forever.", frame: "Frame: Your worth isn't financial." },
+        { stage: "Boundary Tests", text: "Cancel your plans for me.", bad: "Okay...", good1: "Bold. My plans are also bold. How about Thursday?", good2: "I would, but my couch needs me.", frame: "Frame: Hold boundaries with humor." }
+    ];
+    
+    let allTests = [...sampleTests];
+    for (let i = 0; i < 50; i++) {
+        allTests.push({
+            stage: stagesList[i % stagesList.length],
+            text: `Sample test ${i+1}: "Testing your response..."`,
+            bad: "Defensive over-explanation.",
+            good1: "Amused: 'Cute test. Next.'",
+            good2: "Frame flip: 'You're adorable when you test me.'",
+            frame: "Frame: Stay amused."
+        });
+    }
+    
+    let activeStageFilter = "All";
+    let responseVisibility = {};
+    
+    const filtersContainer = document.getElementById("stageFilters");
+    const cardsGrid = document.getElementById("cardsGrid");
+    const resetBtn = document.getElementById("resetAllResponsesBtn");
+    
+    function buildFilters() {
+        if (!filtersContainer) return;
+        const stages = ["All", ...stagesList];
+        filtersContainer.innerHTML = "";
+        stages.forEach(st => {
+            const chip = document.createElement("div");
+            chip.classList.add("stage-chip");
+            if (activeStageFilter === st) chip.classList.add("active");
+            chip.innerText = st;
+            chip.addEventListener("click", () => {
+                activeStageFilter = st;
+                renderCards();
+                buildFilters();
+            });
+            filtersContainer.appendChild(chip);
+        });
+    }
+    
+    function escapeHtml(str) { return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
+    
+    function renderCards() {
+        if (!cardsGrid) return;
+        const filtered = activeStageFilter === "All" ? allTests : allTests.filter(t => t.stage === activeStageFilter);
+        cardsGrid.innerHTML = "";
+        filtered.forEach((test, idx) => {
+            const globalIdx = allTests.indexOf(test);
+            const card = document.createElement("div");
+            card.className = "test-card";
+            card.innerHTML = `
+                <div class="test-header"><span class="stage-badge">${escapeHtml(test.stage)}</span><i class="fas fa-comment-dots" style="color:#FFB347"></i></div>
+                <div class="test-quote">“${escapeHtml(test.text)}”</div>
+                <div class="response-buttons">
+                    <button class="resp-btn good" data-idx="${globalIdx}">✅ Good 1</button>
+                    <button class="resp-btn good2" data-idx="${globalIdx}">✅✅ Good 2</button>
+                    <button class="resp-btn bad" data-idx="${globalIdx}">❌ Bad</button>
+                    <button class="resp-btn frame" data-idx="${globalIdx}">🎭 Frame</button>
+                </div>
+                <div id="resp-${globalIdx}-good1" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-good2" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-bad" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-frame" class="response-content hidden-resp"></div>
+            `;
+            cardsGrid.appendChild(card);
+            const good1Div = document.getElementById(`resp-${globalIdx}-good1`);
+            const good2Div = document.getElementById(`resp-${globalIdx}-good2`);
+            const badDiv = document.getElementById(`resp-${globalIdx}-bad`);
+            const frameDiv = document.getElementById(`resp-${globalIdx}-frame`);
+            if (good1Div) good1Div.innerHTML = `<i class="fas fa-laugh-beam"></i> <strong>Good Response #1:</strong><br> ${escapeHtml(test.good1)}`;
+            if (good2Div) good2Div.innerHTML = `<i class="fas fa-laugh-squint"></i> <strong>Good Response #2:</strong><br> ${escapeHtml(test.good2)}`;
+            if (badDiv) badDiv.innerHTML = `<i class="fas fa-skull-crossbones"></i> <strong>Why It Fails:</strong><br> ${escapeHtml(test.bad)}`;
+            if (frameDiv) frameDiv.innerHTML = `<i class="fas fa-chalkboard-user"></i> <strong>Frame Mastery:</strong><br> ${escapeHtml(test.frame)}`;
+            
+            const toggle = (type, divEl) => {
+                if (!divEl) return;
+                const key = `${globalIdx}_${type}`;
+                responseVisibility[key] = !responseVisibility[key];
+                divEl.classList.toggle("hidden-resp", !responseVisibility[key]);
+            };
+            card.querySelector(`.resp-btn.good`)?.addEventListener("click", () => toggle("good1", good1Div));
+            card.querySelector(`.resp-btn.good2`)?.addEventListener("click", () => toggle("good2", good2Div));
+            card.querySelector(`.resp-btn.bad`)?.addEventListener("click", () => toggle("bad", badDiv));
+            card.querySelector(`.resp-btn.frame`)?.addEventListener("click", () => toggle("frame", frameDiv));
+        });
+    }
+    
+    function resetAllResponses() { responseVisibility = {}; renderCards(); }
+    
+    const tabs = { heroTab: document.getElementById("heroTab"), decoderTab: document.getElementById("decoderTab"), masteryTab: document.getElementById("masteryTab"), ebookTab: document.getElementById("ebookTab") };
+    const desktopNavLinks = document.querySelectorAll("#desktopNavLinks a");
+    const mobileNavLinksItems = document.querySelectorAll("#mobileNavLinks a");
+    
+    function activateTab(tabId) {
+        Object.keys(tabs).forEach(id => { if(tabs[id]) tabs[id].classList.remove("active-tab-content"); });
+        if(tabs[tabId]) tabs[tabId].classList.add("active-tab-content");
+        desktopNavLinks.forEach(link => { link.classList.remove("active-tab"); if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab"); });
+        mobileNavLinksItems.forEach(link => { link.classList.remove("active-tab-mobile"); if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab-mobile"); });
+        if (tabId === "decoderTab" && cardsGrid && cardsGrid.children.length === 0) renderCards();
+        closeMobileMenu();
+    }
+    
+    function openMobileMenu() { document.getElementById("mobileMenuOverlay").classList.add("active"); document.getElementById("mobileMenuContainer").classList.add("open"); document.body.style.overflow = "hidden"; }
+    function closeMobileMenu() { document.getElementById("mobileMenuOverlay").classList.remove("active"); document.getElementById("mobileMenuContainer").classList.remove("open"); document.body.style.overflow = ""; }
+    
+    document.getElementById("menuToggleBtn")?.addEventListener("click", openMobileMenu);
+    document.getElementById("closeMenuBtn")?.addEventListener("click", closeMobileMenu);
+    document.getElementById("mobileMenuOverlay")?.addEventListener("click", (e) => { if (e.target === document.getElementById("mobileMenuOverlay")) closeMobileMenu(); });
+    desktopNavLinks.forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); activateTab(link.getAttribute("data-tab")); }));
+    mobileNavLinksItems.forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); activateTab(link.getAttribute("data-tab")); }));
+    document.getElementById("heroCtaBtn")?.addEventListener("click", () => activateTab("decoderTab"));
+    resetBtn?.addEventListener("click", resetAllResponses);
+    
+    if(filtersContainer) buildFilters();
+    if(cardsGrid) renderCards();
+    activateTab("heroTab");
+</script>
+</body>
+</html>
