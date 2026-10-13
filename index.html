@@ -1,793 +1,699 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Shit Test Decoder | Amused Frame Control Mastery</title>
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  
+  <title>PlanAlchemy | Event Cost Calculator & Vendor Manager | DJ, Videography, Rentals</title>
+  <meta name="description" content="PlanAlchemy transforms event costs into profits. Calculate DJ services, videography, furniture & canopy rentals with our free event budget calculator and vendor directory.">
+  <meta name="keywords" content="event cost calculator, DJ cost calculator, videography pricing tool, furniture rental calculator, canopy rental cost, party equipment rental pricing, event budget planner, PlanAlchemy">
+  <meta name="theme-color" content="#0f172a">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '480px','sm': '640px','md': '768px','lg': '1024px','xl': '1280px','2xl': '1536px',
+          }
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0a0f1e;
-            color: #eef2ff;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: linear-gradient(125deg, #0a0f1e, #141b2b, #1a1f2f, #0f172a);
-            background-size: 400% 400%;
-            animation: gradientFlow 18s ease infinite;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .animated-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 40%, rgba(255, 100, 100, 0.08), transparent 70%);
-            pointer-events: none;
-        }
-
-        .glass-nav {
-            position: fixed;
-            top: 20px;
-            left: 5%;
-            right: 5%;
-            width: 90%;
-            background: rgba(15, 25, 45, 0.7);
-            backdrop-filter: blur(16px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            padding: 0.8rem 2rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.5rem;
-            background: transparent !important;
-            color: #FFD166;
-            letter-spacing: -0.3px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-
-        .logo i {
-            color: #FF6B6B;
-            background: transparent;
-            font-size: 1.4rem;
-        }
-
-        .nav-links {
-            display: flex;
-            flex-direction: row;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: #f0f3fa;
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.25s ease;
-            cursor: pointer;
-            padding: 0.5rem 0;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .nav-links a:hover { color: #FFB347; }
-        .nav-links a.active-tab { color: #FFB347; }
-        .nav-links a.active-tab::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, #FFB347, #FF6B6B);
-            border-radius: 2px;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 2rem;
-            padding: 0.5rem 1rem;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
-            z-index: 2000;
-            visibility: hidden;
-            opacity: 0;
-            transition: visibility 0.3s, opacity 0.3s ease;
-        }
-        .mobile-menu-overlay.active { visibility: visible; opacity: 1; }
-        .mobile-menu-container {
-            position: fixed;
-            top: 0;
-            right: -280px;
-            width: 280px;
-            height: 100%;
-            background: rgba(15, 25, 45, 0.95);
-            backdrop-filter: blur(20px);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 2001;
-            transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-        }
-        .mobile-menu-container.open { right: 0; }
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255,255,200,0.2);
-        }
-        .mobile-menu-header .logo-small { font-size: 1.3rem; font-weight: 800; color: #FFD166; }
-        .close-menu-btn { background: none; border: none; color: #FFB347; font-size: 1.5rem; cursor: pointer; }
-        .mobile-nav-links { display: flex; flex-direction: column; gap: 1.5rem; }
-        .mobile-nav-links a {
-            color: #f0f3fa;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 600;
-            padding: 0.5rem 0;
-            transition: 0.2s;
-            border-left: 3px solid transparent;
-            padding-left: 1rem;
-        }
-        .mobile-nav-links a:hover, .mobile-nav-links a.active-tab-mobile {
-            color: #FFB347;
-            border-left-color: #FFB347;
-            background: rgba(255, 180, 80, 0.1);
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        .hero-content {
-            max-width: 800px;
-            background: rgba(10, 20, 30, 0.55);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            padding: 2.5rem;
-            border: 1px solid rgba(255,255,240,0.25);
-            animation: fadeUp 0.8s ease;
-        }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-content h1 {
-            font-family: 'Caveat', 'Playfair Display', cursive;
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: transparent !important;
-            color: #FFE6B0;
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
-        }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; color: #f0f3ff; text-shadow: 0 1px 4px rgba(0,0,0,0.3); font-weight: 500; }
-        .cta-btn {
-            background: linear-gradient(95deg, #FF6B6B, #FF8E53);
-            border: none;
-            padding: 1rem 2.2rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 3rem;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 10px 20px -5px rgba(255, 107, 107, 0.4);
-        }
-        .cta-btn:hover { transform: scale(1.02); box-shadow: 0 15px 25px -5px rgba(255, 107, 107, 0.6); }
-
-        .tab-content { display: none; background: transparent; padding: 5rem 2rem; }
-        .tab-content.active-tab-content { display: block; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            display: inline-block;
-            width: auto;
-            padding: 0.8rem 2rem;
-            border-radius: 60px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #FFE6B0;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .stage-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; margin-top: 1rem; }
-        .stage-chip {
-            background: rgba(255,255,245,0.08);
-            backdrop-filter: blur(8px);
-            padding: 0.6rem 1.4rem;
-            border-radius: 40px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border: 1px solid rgba(255,255,200,0.2);
-        }
-        .stage-chip:hover {
-            background: rgba(255, 200, 120, 0.2);
-            border-color: rgba(255, 200, 100, 0.6);
-            box-shadow: 0 0 15px rgba(255, 180, 80, 0.4);
-            transform: translateY(-2px);
-        }
-        .stage-chip.active {
-            background: linear-gradient(135deg, #e65c00, #FF8C42);
-            color: #ffffff;
-            border-color: #FFD966;
-            box-shadow: 0 0 20px rgba(230, 92, 0, 0.6);
-        }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .test-card {
-            background: rgba(20, 30, 48, 0.65);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255,255,210,0.2);
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        .test-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(255, 200, 100, 0.7);
-            box-shadow: 0 0 25px rgba(255, 180, 80, 0.3);
-            background: rgba(30, 45, 70, 0.7);
-        }
-        .test-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1rem; border-bottom: 1px dashed rgba(255,215,150,0.4); padding-bottom: 0.5rem; }
-        .stage-badge { background: #FF8C42; color: #0a0f1e; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.8rem; border-radius: 20px; }
-        .test-quote { font-size: 1rem; font-weight: 600; margin: 1rem 0; color: #FFF3E0; font-style: italic; border-left: 3px solid #FF9F4A; padding-left: 1rem; }
-        .response-buttons { display: flex; gap: 0.8rem; margin: 1rem 0; flex-wrap: wrap; }
-        .resp-btn {
-            background: rgba(0,0,0,0.55);
-            border: 1px solid rgba(255,160,80,0.7);
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #FFD9A5;
-        }
-        .resp-btn:hover { transform: translateY(-2px); box-shadow: 0 0 12px rgba(255, 180, 80, 0.5); background: rgba(0,0,0,0.7); }
-        .resp-btn.good { border-color: #6BCB77; color: #C8FFC8; }
-        .resp-btn.bad { border-color: #FF6B6B; color: #FFBEBE; }
-        .resp-btn.frame { border-color: #4D9DE0; color: #C2E4FF; }
-        .response-content { background: rgba(0, 0, 0, 0.65); border-radius: 1.2rem; padding: 1rem; margin-top: 0.8rem; font-size: 0.9rem; border-left: 3px solid #FFB347; }
-        .hidden-resp { display: none; }
-        .reset-all-btn { display: block; margin: 2rem auto 0; background: #2C3E66; border: none; padding: 0.8rem 2rem; border-radius: 3rem; color: white; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
-        .reset-all-btn:hover { background: #FF6B6B; box-shadow: 0 0 18px rgba(255, 107, 107, 0.5); transform: scale(1.02); }
-        
-        /* Ebook Page Styles */
-        .ebook-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(20, 30, 48, 0.65);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255,255,210,0.2);
-            padding: 2.5rem;
-        }
-        .ebook-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .ebook-header h2 {
-            font-family: 'Caveat', cursive;
-            font-size: 2.8rem;
-            color: #FFD966;
-            margin-bottom: 0.5rem;
-        }
-        .ebook-header p {
-            color: #c0c8e0;
-        }
-        .ebook-preview {
-            background: rgba(0,0,0,0.4);
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-left: 4px solid #FF8C42;
-        }
-        .ebook-preview h3 {
-            color: #FFB347;
-            margin-bottom: 1rem;
-        }
-        .ebook-preview ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .ebook-preview li {
-            padding: 0.5rem 0;
-            border-bottom: 1px dashed rgba(255,255,200,0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .ebook-preview li i {
-            color: #6BCB77;
-            width: 24px;
-        }
-        .download-btn {
-            display: block;
-            width: fit-content;
-            margin: 2rem auto 0;
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 3rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-        }
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
-        }
-        .ebook-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-        .feature-badge {
-            background: rgba(255,255,245,0.1);
-            border-radius: 40px;
-            padding: 0.4rem 1.2rem;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255,200,100,0.3);
-        }
-        
-        footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #b0bad5; border-top: 1px solid rgba(255,255,200,0.1); margin-top: 2rem; }
-
-        @media (max-width: 680px) {
-            .glass-nav { flex-direction: row; justify-content: space-between; padding: 0.7rem 1.2rem; width: 92%; left: 4%; right: 4%; }
-            .nav-links { display: none; }
-            .menu-toggle { display: flex; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .cards-grid { grid-template-columns: 1fr; }
-            .section-title { font-size: 1.6rem; padding: 0.5rem 1.2rem; }
-            .ebook-container { padding: 1.5rem; margin: 0 1rem; }
-            .ebook-header h2 { font-size: 2rem; }
-        }
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 1.8rem; }
-            .section-title { font-size: 1.4rem; }
-        }
-    </style>
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0f172a;
+      margin: 0;
+      overflow-x: hidden;
+      color: #f1f5f9;
+    }
+    .luxury-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      position: relative;
+    }
+    .luxury-bg::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(56,189,248,0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(192,132,252,0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(129,140,248,0.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .glass-card {
+      background: rgba(15,23,42,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(56,189,248,0.2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(56,189,248,0.05);
+    }
+    
+    .gold-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .gold-border-glow {
+      border: 1px solid rgba(56,189,248,0.2);
+      transition: all 0.3s ease;
+    }
+    .gold-border-glow:focus-within, .gold-border-glow:hover {
+      border-color: rgba(56,189,248,0.6);
+      box-shadow: 0 0 20px rgba(56,189,248,0.15);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(56,189,248,0.3);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      border: 1px solid rgba(56,189,248,0.2);
+      color: #94a3b8;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-secondary:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+    
+    .tab-content {
+      display: none;
+      width: 100%;
+      padding-top: 2rem;
+      padding-bottom: 3rem;
+    }
+    .tab-content.active-tab {
+      display: block;
+    }
+    
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 400px;
+      height: 100vh;
+      height: 100dvh;
+      background: linear-gradient(135deg, rgba(15,23,42,0.99) 0%, rgba(30,41,59,0.99) 100%);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-left: 1px solid rgba(56,189,248,0.2);
+      box-shadow: -20px 0 60px rgba(0,0,0,0.8);
+      z-index: 100;
+      transition: right 0.45s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .mobile-menu.open {
+      right: 0;
+    }
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.8rem;
+      border-bottom: 1px solid rgba(56,189,248,0.1);
+    }
+    .menu-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .menu-close-btn {
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: #38bdf8;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .menu-close-btn:hover {
+      background: rgba(56,189,248,0.2);
+      transform: rotate(90deg);
+    }
+    .mobile-menu-nav {
+      flex: 1;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 1rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      transition: all 0.3s;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mobile-nav-link::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #38bdf8, #818cf8, #c084fc);
+      border-radius: 0 3px 3px 0;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    .mobile-nav-link:hover {
+      color: #38bdf8;
+      background: rgba(56,189,248,0.08);
+      padding-left: 1.6rem;
+    }
+    .mobile-nav-link:hover::before {
+      transform: scaleY(1);
+    }
+    .mobile-nav-link.active-mob {
+      color: #38bdf8;
+      background: rgba(56,189,248,0.12);
+    }
+    .mobile-nav-link.active-mob::before {
+      transform: scaleY(1);
+    }
+    .nav-icon {
+      font-size: 1.3rem;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(56,189,248,0.08);
+      border-radius: 10px;
+    }
+    .mobile-menu-footer {
+      padding: 1.5rem 1.8rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 110;
+      padding: 10px;
+      background: rgba(56,189,248,0.08);
+      border-radius: 12px;
+      border: 1px solid rgba(56,189,248,0.2);
+    }
+    .hamburger:hover {
+      background: rgba(56,189,248,0.15);
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #38bdf8;
+      border-radius: 2px;
+    }
+    
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: rgba(56,189,248,0.05);
+      border-radius: 50px;
+      padding: 0.35rem;
+      border: 1px solid rgba(56,189,248,0.2);
+    }
+    .desktop-nav .tab-link {
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      white-space: nowrap;
+      color: #94a3b8;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .desktop-nav .tab-link:hover {
+      color: #38bdf8;
+      background: rgba(56,189,248,0.1);
+    }
+    .nav-separator {
+      width: 1px;
+      height: 20px;
+      background: rgba(56,189,248,0.2);
+      margin: 0 0.25rem;
+    }
+    
+    /* Uniform icon color in desktop nav */
+    .desktop-nav .tab-link {
+      filter: grayscale(100%) brightness(1.2);
+    }
+    .desktop-nav .tab-link:hover,
+    .desktop-nav .tab-link[style*="color:#38bdf8"] {
+      filter: none;
+    }
+    
+    .rec-filter {
+      cursor: pointer;
+    }
+    .rec-filter.active {
+      background: rgba(56,189,248,0.2);
+      color: #38bdf8;
+    }
+    
+    .toast-container {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .toast {
+      background: rgba(15,23,42,0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(56,189,248,0.2);
+      border-radius: 16px;
+      padding: 16px 24px;
+      min-width: 300px;
+      max-width: 450px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      animation: slideInRight 0.4s cubic-bezier(0.4,0,0.2,1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .toast.removing {
+      animation: slideOutRight 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOutRight {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    .offline-indicator {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #38bdf8;
+      color: #0f172a;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 300;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .offline-indicator.show {
+      display: block;
+    }
+    
+    input[type="number"], input[type="text"], input[type="email"],
+    input[type="tel"], textarea, select {
+      background: rgba(15,23,42,0.8);
+      border: 1px solid rgba(56,189,248,0.2);
+      color: #f1f5f9;
+      transition: all 0.25s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
+    }
+    
+    @media (max-width: 768px) {
+      .desktop-nav { display: none !important; }
+      .hamburger { display: flex; }
+      .toast { min-width: 250px; max-width: 90vw; }
+    }
+    @media (max-width: 480px) {
+      .mobile-menu { max-width: 100%; }
+    }
+  </style>
 </head>
-<body>
+<body class="luxury-bg antialiased">
 
-<div class="animated-bg"></div>
+  <div class="offline-indicator" id="offlineIndicator">📡 You're offline — app still works!</div>
+  <div class="toast-container" id="toastContainer"></div>
+  <div id="modalContainer"></div>
 
-<nav class="glass-nav">
-    <div class="logo"><span><i class="fas fa-dragon"></i> ShitTest.Guru</span></div>
-    <div class="nav-links" id="desktopNavLinks">
-        <a data-tab="heroTab" class="active-tab">🏠 Home</a>
-        <a data-tab="decoderTab">📖 Shit Test Decoder</a>
-        <a data-tab="masteryTab">🧠 Amused Mastery</a>
-        <a data-tab="ebookTab">📘 Free Ebook</a>
+  <!-- Main Navigation -->
+  <nav class="glass-card fixed top-0 inset-x-0 z-50 border-b px-3 xs:px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between" style="border-color:rgba(56,189,248,0.1)">
+    <div class="flex items-center gap-2">
+      <div class="text-xl xs:text-2xl sm:text-3xl font-bold tracking-wide gold-text shrink-0" style="font-family:'Playfair Display',serif">PlanAlchemy</div>
     </div>
-    <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
-</nav>
+    <div class="desktop-nav">
+      <button class="tab-link" data-tab="home" style="color:#38bdf8">🏠 Home</button><span class="nav-separator"></span>
+      <button class="tab-link" data-tab="dashboard">📊 Dashboard</button><span class="nav-separator"></span>
+      <button class="tab-link" data-tab="plan">📋 Plan Event</button><span class="nav-separator"></span>
+      <button class="tab-link" data-tab="vendors">👥 My Vendors</button><span class="nav-separator"></span>
+      <button class="tab-link" data-tab="recommended">⭐ Recommended</button><span class="nav-separator"></span>
+      <button class="tab-link" data-tab="about">ℹ️ About</button>
+    </div>
+    <div class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></div>
+  </nav>
 
-<div class="mobile-menu-overlay" id="mobileMenuOverlay">
-    <div class="mobile-menu-container" id="mobileMenuContainer">
-        <div class="mobile-menu-header"><span class="logo-small"><i class="fas fa-dragon"></i> ShitTest</span><button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
-        <div class="mobile-nav-links" id="mobileNavLinks">
-            <a data-tab="heroTab">🏠 Home</a>
-            <a data-tab="decoderTab">📖 Shit Test Decoder</a>
-            <a data-tab="masteryTab">🧠 Amused Mastery</a>
-            <a data-tab="ebookTab">📘 Free Ebook</a>
+  <!-- Mobile Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    <div class="mobile-menu-header">
+      <div>
+        <span class="menu-logo gold-text">PlanAlchemy</span>
+      </div>
+      <button class="menu-close-btn" id="closeMenuBtn" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="mobile-menu-nav">
+      <a class="mobile-nav-link active-mob" data-tab="home"><span class="nav-icon">🏠</span><span>Home</span></a>
+      <a class="mobile-nav-link" data-tab="dashboard"><span class="nav-icon">📊</span><span>Dashboard</span></a>
+      <a class="mobile-nav-link" data-tab="plan"><span class="nav-icon">📋</span><span>Plan Event</span></a>
+      <a class="mobile-nav-link" data-tab="vendors"><span class="nav-icon">👥</span><span>My Vendors</span></a>
+      <a class="mobile-nav-link" data-tab="recommended"><span class="nav-icon">⭐</span><span>Recommended</span></a>
+      <a class="mobile-nav-link" data-tab="about"><span class="nav-icon">ℹ️</span><span>About</span></a>
+    </nav>
+    <div class="mobile-menu-footer">
+      <p class="text-xs text-gray-500 tracking-wider">© 2024 PlanAlchemy</p>
+      <p class="text-xs text-gray-600 mt-1">Craft your event. Master your margins.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="relative pt-16 sm:pt-20">
+    
+    <!-- HOME TAB -->
+    <section id="tab-home" class="tab-content active-tab" style="padding:2rem 1.5rem 3rem">
+      <div class="flex flex-col justify-center" style="min-height:calc(100vh - 5rem)">
+        <div class="max-w-4xl mx-auto w-full py-8 sm:py-12 lg:py-16">
+          <div class="text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border mb-6" style="border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.05)">
+              <span class="w-1.5 h-1.5 bg-[#38bdf8] rounded-full animate-pulse"></span>
+              <span class="text-xs uppercase tracking-[0.15em] text-[#38bdf8]">Smart Event Budget Calculator</span>
+            </div>
+            <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4" style="font-family:'Playfair Display',serif">
+              <span class="text-white/90">Calculate the </span><br>
+              <span class="shimmer-text">Perfect Price</span><br>
+              <span class="text-white/90">For Your Event</span>
+            </h1>
+            <p class="text-sm text-[#38bdf8]/80 italic mb-4 font-light" style="font-family:'Playfair Display',serif">"Craft your event. Master your margins."</p>
+            <p class="text-sm xs:text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+              The <strong>ideal price calculator</strong> for event planners. Instantly determine the perfect ticket price to cover your costs and hit your profit goals — whether you're booking a DJ, videographer, or renting furniture and canopies.
+            </p>
+            <button id="hero-cta" class="btn-primary px-8 xs:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-base shadow-2xl inline-flex items-center gap-2">
+              <span>Plan Your Event Now</span><span>→</span>
+            </button>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+    </section>
 
-<div id="heroTab" class="tab-content active-tab-content">
-    <section class="hero"><div class="hero-content"><h1>⚔️ Master The Shit Test Universe ⚔️</h1><p>500+ unique verbal curveballs from first text to “til death do you part” — including Comfort, Value, Qualification & Boundary tests. Amused mastery, frame control & hilarious recovery.</p><button class="cta-btn" id="heroCtaBtn">🔥 Enter the Decoder →</button></div></section>
-</div>
-
-<div id="decoderTab" class="tab-content"><div class="container"><h2 class="section-title">⚡ Shit Test Decoder ⚡</h2><div class="stage-filters" id="stageFilters"></div><div class="cards-grid" id="cardsGrid"></div><button class="reset-all-btn" id="resetAllResponsesBtn"><i class="fas fa-undo-alt"></i> Reset all responses</button><footer>🎯 Over 500 unique shit tests — click buttons to reveal Good Responses, Bad Reply & Frame Control.</footer></div></div>
-
-<div id="masteryTab" class="tab-content"><div class="container" style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;"><h2 class="section-title" style="margin-bottom: 2rem;">🧘 Amused Mastery & Frame Control</h2><div style="display: flex; flex-direction: column; gap: 2rem;">
-    <div class="test-card"><i class="fas fa-smile-wink" style="font-size: 2rem; color: #FFB347;"></i><h3>The Golden Rule</h3><p>She throws a shit test to see if you’ll crumble. Amused mastery means you treat every test as a joke. You're the game master. Frame = reality you choose.</p></div>
-    <div class="test-card"><i class="fas fa-chess-queen" style="font-size: 2rem; color: #6BCB77;"></i><h3>Frame Control 101</h3><p>Never accept her frame. If she says "you're cheap", your frame: "I'm selectively generous." The master never defends, he redefines.</p></div>
-    <div class="test-card"><i class="fas fa-comment-dots" style="font-size: 2rem; color: #FF8E53;"></i><h3>5 Core Response Archetypes</h3><p>Amplify | Agree & exaggerate | Misdirect with absurdity | Label the test | Reframe to "us"</p></div>
-    <div class="test-card"><i class="fas fa-skull" style="font-size: 2rem; color: #FF6B6B;"></i><h3>Why Bad Replies Fail</h3><p>Defensiveness = guilt. Over-explaining = weakness. Apologizing = loss of frame. Amused Mastery laughs at the test itself.</p></div>
-</div><footer>📜 Practice amused neutrality until it becomes reflex.</footer></div></div>
-
-<!-- Ebook Download Page -->
-<div id="ebookTab" class="tab-content">
-    <div class="container">
-        <div class="ebook-container">
-            <div class="ebook-header">
-                <h2><i class="fas fa-book-open"></i> Shit Test Mastery Ebook</h2>
-                <p>The complete guide to passing every test from first text to marriage — with humor, frame control, and zero neediness.</p>
-            </div>
-            
-            <div class="ebook-features">
-                <span class="feature-badge"><i class="fas fa-check-circle"></i> 500+ Real Examples</span>
-                <span class="feature-badge"><i class="fas fa-brain"></i> Frame Control Mastery</span>
-                <span class="feature-badge"><i class="fas fa-laugh"></i> Amused Response Scripts</span>
-                <span class="feature-badge"><i class="fas fa-chart-line"></i> From First Contact to Marriage</span>
-            </div>
-            
-            <div class="ebook-preview">
-                <h3><i class="fas fa-file-alt"></i> What's Inside:</h3>
-                <ul>
-                    <li><i class="fas fa-comment"></i> <strong>First Contact Tests</strong> — Low-energy openers, "are you a creep?" and resume requests</li>
-                    <li><i class="fas fa-heart"></i> <strong>Dating Stage Landmines</strong> — The bill trap, ex-boyfriend bombs, "would you fight for me?"</li>
-                    <li><i class="fas fa-home"></i> <strong>Relationship Chaos</strong> — Chore wars, silent treatment, social media stalking</li>
-                    <li><i class="fas fa-ring"></i> <strong>Married Life Black Belts</strong> — "We need to talk" pranks, parenting blame, hobby vs. her</li>
-                    <li><i class="fas fa-shield-alt"></i> <strong>Comfort Tests</strong> — Reassurance without groveling</li>
-                    <li><i class="fas fa-trophy"></i> <strong>Value Tests</strong> — Status challenges and how to stay unfazed</li>
-                    <li><i class="fas fa-clipboard-list"></i> <strong>Qualification Tests</strong> — "What do you bring to the table?" answered playfully</li>
-                    <li><i class="fas fa-ban"></i> <strong>Boundary Tests</strong> — "Cancel your plans for me" and phone password demands</li>
-                </ul>
-            </div>
-            
-            <div class="ebook-preview" style="margin-top: 1rem;">
-                <h3><i class="fas fa-graduation-cap"></i> Bonus: The Amused Mastery Cheat Sheet</h3>
-                <ul>
-                    <li><i class="fas fa-smile"></i> The 5 response archetypes that work every time</li>
-                    <li><i class="fas fa-skull-crossbones"></i> Why bad replies fail (and make it worse)</li>
-                    <li><i class="fas fa-chess-board"></i> Frame control drills to stay unshakeable</li>
-                    <li><i class="fas fa-quote-right"></i> 50+ ready-to-use one-liners for any situation</li>
-                </ul>
-            </div>
-            
-            <button id="downloadEbookBtn" class="download-btn"><i class="fas fa-download"></i> Download Free Ebook (PDF)</button>
-            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #8a96b5;"><i class="fas fa-lock"></i> No email required. Instant download.</p>
+    <!-- DASHBOARD TAB -->
+    <section id="tab-dashboard" class="tab-content" style="padding:2rem 1.5rem 3rem">
+      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
+        <div class="mb-6 sm:mb-8 lg:mb-10">
+          <h2 class="text-3xl sm:text-4xl font-bold gold-text" style="font-family:'Playfair Display',serif">Dashboard</h2>
+          <p class="text-gray-400 text-sm sm:text-base mt-2">Your event financial overview</p>
         </div>
-        <footer>📖 Master the art of amused indifference — download your free copy today.</footer>
-    </div>
-</div>
+        <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Events</p><p class="text-3xl sm:text-4xl font-bold mt-2" id="dashboardTotalEvents">0</p></div>
+          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Revenue</p><p class="text-3xl sm:text-4xl font-bold gold-text mt-2" id="dashboardTotalRevenue">$0.00</p></div>
+          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Costs</p><p class="text-3xl sm:text-4xl font-bold mt-2" id="dashboardTotalCosts">$0.00</p></div>
+          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Net Profit</p><p class="text-3xl sm:text-4xl font-bold gold-text mt-2" id="dashboardNetProfit">$0.00</p></div>
+        </div>
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
+          <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-semibold" style="font-family:'Playfair Display',serif">Saved Events</h3><span class="text-xs text-gray-400" id="dashboardEventCount">0 events</span></div>
+          <div class="overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-white/10 text-xs uppercase tracking-widest text-gray-400"><th class="pb-3 pr-4">Event Name</th><th class="pb-3 pr-4">Guests</th><th class="pb-3 pr-4">Ticket Price</th><th class="pb-3 pr-4">Total Cost</th><th class="pb-3 pr-4">Revenue</th><th class="pb-3">Profit</th><th class="pb-3"></th></tr></thead><tbody id="dashboardEventsTableBody" class="text-sm"><tr><td colspan="7" class="py-8 text-center text-gray-500">No saved events yet. Create one in the Plan Event tab!</td></tr></tbody></table></div>
+        </div>
+      </div>
+    </section>
 
-<script>
-    // ========== EBOOK GENERATION FUNCTION ==========
-    function generateEbookContent() {
-        return `Shit Test Mastery: The Complete Guide
-================================
+    <!-- PLAN EVENT TAB -->
+    <section id="tab-plan" class="tab-content" style="padding:2rem 1.5rem 3rem">
+      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          <div class="glass-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 xs:p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
+            <h3 class="text-xl xs:text-2xl sm:text-3xl font-semibold gold-text" style="font-family:'Playfair Display',serif">Event Details</h3>
+            <div><label for="eventName" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Event Name</label><input type="text" id="eventName" placeholder="e.g., Summer Party" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm" value=""></div>
+            <div><div class="flex justify-between items-center mb-3"><span class="text-xs uppercase tracking-widest text-gray-400">Expenses</span><button id="addExpenseBtnDesktop" class="text-[#38bdf8] text-xs border border-[#38bdf8]/30 px-4 py-2 rounded-full hover:bg-[#38bdf8]/10 transition">+ Add</button></div><div id="expensesContainer" class="space-y-2 sm:space-y-3 max-h-48 overflow-y-auto pr-1"><p class="text-gray-500 text-xs text-center py-4">Add expenses like DJ, videography, furniture rental, etc.</p></div></div>
+            <div class="grid grid-cols-2 gap-3 sm:gap-4"><div><label for="guestCount" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Guest Count</label><input type="number" id="guestCount" value="0" min="0" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm"></div><div><label for="ticketPrice" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Ticket Price ($)</label><input type="number" id="ticketPrice" value="0" min="0" step="0.01" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm"></div></div>
+            <div class="flex gap-3 pt-2"><button id="saveEventBtn" class="flex-1 btn-primary px-4 py-3 rounded-xl text-sm">💾 Save Event to Dashboard</button><button id="resetEventBtn" class="flex-1 btn-secondary px-4 py-3 rounded-xl text-sm">🔄 Clear</button></div>
+          </div>
+          <div class="glass-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 xs:p-5 sm:p-6 md:p-8 flex flex-col space-y-4 sm:space-y-5">
+            <h3 class="text-xl xs:text-2xl sm:text-3xl font-semibold gold-text" style="font-family:'Playfair Display',serif">Profit Compass</h3>
+            <div class="grid grid-cols-2 gap-3 sm:gap-4"><div class="bg-white/5 rounded-lg sm:rounded-2xl p-4 sm:p-5"><p class="text-xs uppercase tracking-widest text-gray-400">Total Cost</p><p class="text-2xl sm:text-3xl font-bold mt-2" id="totalCostDisplay">$0.00</p></div><div class="bg-white/5 rounded-lg sm:rounded-2xl p-4 sm:p-5"><p class="text-xs uppercase tracking-widest text-gray-400">Break-Even</p><p class="text-xl sm:text-2xl font-semibold mt-2" id="breakEvenDisplay">0 tickets</p></div></div>
+            <div><label for="targetProfit" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Target Profit ($)</label><input type="number" id="targetProfit" value="0" min="0" step="100" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm mb-4"><div class="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-lg sm:rounded-2xl p-4 sm:p-5 border border-[#38bdf8]/20"><p class="text-xs uppercase tracking-widest text-gray-400">Required Ticket Price</p><p class="text-2xl sm:text-3xl font-bold gold-text mt-2" id="requiredPriceDisplay">$0.00</p><div id="viabilityIndicator" class="mt-3 text-xs font-medium"><span class="text-gray-500">Enter values to see results</span></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-By ShitTest.Guru
+    <!-- MY VENDORS TAB -->
+    <section id="tab-vendors" class="tab-content" style="padding:2rem 1.5rem 3rem">
+      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8"><div><h2 class="text-3xl sm:text-4xl font-bold gold-text" style="font-family:'Playfair Display',serif">My Vendors</h2></div><button id="addVendorBtn" class="btn-primary px-6 py-3 rounded-xl text-sm">+ Add Vendor</button></div>
+        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 mb-6"><div class="flex flex-col sm:flex-row gap-3"><input type="text" id="vendorSearch" placeholder="Search vendors..." class="flex-1 p-3 rounded-xl gold-border-glow text-sm"><select id="vendorCategoryFilter" class="p-3 rounded-xl gold-border-glow text-sm bg-[#0f172a]"><option value="all">All</option><option value="dj">🎧 DJ</option><option value="videography">🎥 Videography</option><option value="rental-chairs">🪑🛋️ Furniture</option><option value="rental-canopy">⛺ Canopy</option><option value="catering">🍽️ Catering</option><option value="venue">🏛️ Venue</option><option value="other">📦 Other</option></select></div></div>
+        <div id="vendorsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
+        <div id="noVendorsMessage" class="text-center py-12 text-gray-500">No vendors saved yet.</div>
+      </div>
+    </section>
 
-TABLE OF CONTENTS
------------------
-1. Introduction: What Is a Shit Test?
-2. The Golden Rule: Amused Mastery
-3. First Contact Tests (Texting & Apps)
-4. Dating Stage Landmines
-5. Relationship Chaos
-6. Married Life Black Belts
-7. Comfort Tests (Seeking Reassurance)
-8. Value Tests (Status & Worth)
-9. Qualification Tests (Standards & Expectations)
-10. Boundary Tests (Pushing Limits)
-11. Frame Control 101
-12. The Ultimate Cheat Sheet
+    <!-- RECOMMENDED VENDORS TAB -->
+    <section id="tab-recommended" class="tab-content" style="padding:2rem 1.5rem 3rem">
+      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
+        <div class="mb-8 sm:mb-10 text-center"><h2 class="text-3xl sm:text-4xl font-bold gold-text mb-3" style="font-family:'Playfair Display',serif">Recommended Vendors</h2></div>
+        <div class="flex flex-wrap gap-2 mb-8 justify-center"><button class="rec-filter active bg-[#38bdf8]/20 text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-[#38bdf8]/30" data-filter="all">All</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="dj">🎧 DJ</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="videography">🎥 Videography</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="rental-chairs">🪑🛋️ Furniture</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="rental-canopy">⛺ Canopy</button></div>
+        <div id="recommendedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
+      </div>
+    </section>
 
+    <!-- ABOUT TAB -->
+    <section id="tab-about" class="tab-content" style="padding:2rem 1.5rem 3rem">
+      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12 text-center">
+        <h2 class="text-4xl sm:text-5xl font-bold gold-text mb-6" style="font-family:'Playfair Display',serif">Craft Your Event. Master Your Margins.</h2>
+        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto mb-10">PlanAlchemy transforms event costs into clarity — every expense, every ticket, every profit margin calculated with precision.</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto"><div class="glass-card rounded-2xl p-6 sm:p-8"><div class="text-3xl mb-4">🎯</div><h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Our Mission</h3><p class="text-gray-400 text-sm">Making profitability accessible for celebrations of every scale.</p></div><div class="glass-card rounded-2xl p-6 sm:p-8"><div class="text-3xl mb-4">🔮</div><h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Our Vision</h3><p class="text-gray-400 text-sm">Creativity and commerce in perfect harmony.</p></div></div>
+        <div class="mt-10 text-xs text-gray-600"><p>© 2024 PlanAlchemy. All rights reserved.</p></div>
+      </div>
+    </section>
 
-CHAPTER 1: INTRODUCTION
------------------------
-A shit test is not abuse. It's subconscious vetting. Women throw these to see if you have:
-1. Emotional stability
-2. Frame control
-3. Humor under pressure
-4. Leadership
+  </main>
 
-The Golden Rule: She doesn't want a "correct answer." She wants to see if you stay cool, amused, and unbothered. The moment you defend yourself like a politician, you've failed.
-
-
-CHAPTER 2: FIRST CONTACT TESTS
-------------------------------
-Test: "Hey." (low energy)
-Bad: "Hey beautiful! I'm Mike, I like tacos."
-Good: "Whoa, save some charisma. I'll wait for part two."
-Frame: You're the prize. She needs to catch up.
-
-Test: "Do you always message random women at night?"
-Bad: "No I swear I'm not creepy!"
-Good: "Only on nights with a full moon. Otherwise, carrier pigeons."
-Frame: Amused, unfazed, you're vetting her too.
-
-Test: "Why are you single?"
-Bad: "I don't know, I'm too caring I guess."
-Good: "My pet tarantula gives terrible relationship advice."
-Frame: Single by choice, not defect.
-
-
-CHAPTER 3: DATING STAGE LANDMINES
---------------------------------
-Test: "You're paying, right?"
-Bad: "Umm I thought we'd split?"
-Good: "Absolutely. And you're buying dessert with an embarrassing story."
-Frame: Generous leader + playful.
-
-Test: "My ex used to do that same thing."
-Bad: "I'm not him! Do you still love him?"
-Good: "Oh yeah? My ex collected porcelain dolls. What was his weirdest habit?"
-Frame: Treat ex as sitcom character.
-
-Test: "Would you fight a guy who insults me?"
-Bad: "Of course I'd destroy him!"
-Good: "I'd challenge him to a yo-yo duel. Undefeated."
-Frame: Clever protector, not brute.
-
-
-CHAPTER 4: COMFORT TESTS (Seeking Reassurance)
-----------------------------------------------
-Test: "Do you even like me? Or am I just convenient?"
-Bad: "Of course I like you! You're amazing!"
-Good: "I like you. I also like pizza. But I don't share my pizza with just anyone."
-Frame: Reassure with humor, not desperation.
-
-Test: "You're going to leave me eventually, aren't you?"
-Bad: "No never! I promise I'll never leave you!"
-Good: "Probably. But first I'm going to annoy you for at least 40 more years."
-Frame: Acknowledge fear playfully, demonstrate long-term commitment.
-
-
-CHAPTER 5: VALUE TESTS (Status & Worth)
---------------------------------------
-Test: "You don't make enough money to date me."
-Bad: "I'm working hard! I'll get a promotion!"
-Good: "Good thing my personality is currency. I'm a billionaire."
-Frame: Your worth isn't financial.
-
-Test: "You're not really my type."
-Bad: "What is your type? I can change!"
-Good: "Good. My type is 'disappointment.' So we're both breaking patterns."
-Frame: Unfazed. Your value doesn't depend on her categories.
-
-
-CHAPTER 6: QUALIFICATION TESTS
------------------------------
-Test: "What do you bring to the table?"
-Bad: "I'm loyal, caring, I have a job..."
-Good: "I bring jokes, questionable dance moves, and I'm really good at killing spiders."
-Frame: She qualifies to YOU, not the other way around.
-
-Test: "Can you handle a strong woman?"
-Bad: "Of course! I love strong women!"
-Good: "Strong? Good. I need someone who can open jars. My hand strength is embarrassing."
-Frame: Treat it as a partnership, not a challenge.
-
-
-CHAPTER 7: BOUNDARY TESTS
-------------------------
-Test: "Cancel your plans and come see me tonight."
-Bad: "Okay... I guess I can reschedule."
-Good: "Bold move. I like it. But my plans are also bold. How about Thursday?"
-Frame: Hold your frame. Don't abandon your life.
-
-Test: "Give me your phone password."
-Bad: "Uh... it's 1234. But don't go through my stuff!"
-Good: "Nice try. My phone contains state secrets and terrible selfies."
-Frame: Playful deflection. Privacy is healthy.
-
-
-CHAPTER 8: FRAME CONTROL MASTERY
--------------------------------
-Every shit test follows hidden questions:
-1. "Are you confident?" → Don't chase.
-2. "Can you handle my negativity?" → Amplify or deflect.
-3. "Are you easily shaken?" → Stay calm. Validate briefly.
-4. "Will you lead without controlling?" → Make a decision. Make it funny.
-5. "Are you still fun?" → Say yes, then add absurd condition.
-
-THE MASTER'S MINDSET
-You will fail tests. That's fine.
-The master isn't the one who never fails. The master is the one who laughs mid-fail.
-
-"When in doubt, make it weirder."
-
-© ShitTest.Guru — All rights reserved. Go forth and confuse her beautifully.`;
+  <script>
+    // Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register("data:application/javascript," + encodeURIComponent(
+          `const CACHE_NAME='planalchemy-v3';self.addEventListener('install',(e)=>{e.waitUntil(caches.open(CACHE_NAME).then((c)=>c.addAll(['/'])));});self.addEventListener('fetch',(e)=>{e.respondWith(caches.match(e.request).then((r)=>r||fetch(e.request)));});`
+        )).catch(() => {});
+      });
     }
 
-    // Download functionality
-    document.getElementById("downloadEbookBtn")?.addEventListener("click", function() {
-        const content = generateEbookContent();
-        const blob = new Blob([content], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "Shit_Test_Mastery_Ebook.txt";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-        
-        // Show temporary success feedback
-        const btn = document.getElementById("downloadEbookBtn");
-        const originalText = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
-        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
-    });
+    function updateOnlineStatus() {
+      const indicator = document.getElementById('offlineIndicator');
+      if (!navigator.onLine) {
+        indicator.classList.add('show');
+        setTimeout(() => indicator.classList.remove('show'), 3000);
+      }
+    }
+    window.addEventListener('offline', updateOnlineStatus);
+    if (!navigator.onLine) updateOnlineStatus();
 
-    // Shit Test Database (abridged for decoder functionality)
-    const stagesList = ["First Contact", "Dating Stage", "Relationship", "Married Life", "Living Together", "Texting", "Comfort Tests", "Value Tests", "Qualification Tests", "Boundary Tests"];
-    
-    // Sample tests for decoder (keeping functionality intact)
-    const sampleTests = [
-        { stage: "First Contact", text: "Hey. (one word opener)", bad: "Hey beautiful! I'm Mike!", good1: "Whoa, save some charisma. I'll wait for part two.", good2: "Bold strategy. Let's see if it pays off.", frame: "Frame: you're the prize." },
-        { stage: "Comfort Tests", text: "Do you even like me?", bad: "Of course! You're amazing!", good1: "I like you. I also like pizza. Elite circle.", good2: "Like you? I tolerate you. That's deeper.", frame: "Frame: Reassure with humor." },
-        { stage: "Value Tests", text: "You don't make enough money.", bad: "I'll work harder!", good1: "Good thing my personality is currency.", good2: "Money is temporary. Dad jokes are forever.", frame: "Frame: Your worth isn't financial." },
-        { stage: "Boundary Tests", text: "Cancel your plans for me.", bad: "Okay...", good1: "Bold. My plans are also bold. How about Thursday?", good2: "I would, but my couch needs me.", frame: "Frame: Hold boundaries with humor." }
+    const STORAGE_PREFIX = 'planalchemy_';
+    const DEFAULT_EXPENSES = [];
+    const DEFAULT_VENDORS = [];
+    const DEFAULT_SAVED_EVENTS = [];
+    const DEFAULT_SETTINGS = { eventName: '', guestCount: '0', ticketPrice: '0', targetProfit: '0' };
+
+    const recommendedVendors = [
+      { id: 'r1', name: 'Elite Sound DJs', category: 'dj', rating: 4.9, reviews: 127, priceRange: '$800–1,200', location: 'Downtown', description: 'Professional DJ services for all events.', contact: 'bookings@elitesound.com', phone: '(555) 111-2233', image: '🎧' },
+      { id: 'r2', name: 'Party Beats Entertainment', category: 'dj', rating: 4.7, reviews: 89, priceRange: '$600–1,000', location: 'Westside', description: 'Affordable DJ packages with MC included.', contact: 'info@partybeats.com', phone: '(555) 222-3344', image: '🎧' },
+      { id: 'r3', name: 'Golden Moments Videography', category: 'videography', rating: 4.8, reviews: 94, priceRange: '$1,500–2,800', location: 'City Center', description: 'Cinematic 4K wedding & event videography.', contact: 'hello@goldenmoments.com', phone: '(555) 333-4455', image: '🎥' },
+      { id: 'r4', name: 'Lens & Light Studios', category: 'videography', rating: 4.6, reviews: 73, priceRange: '$1,200–2,200', location: 'North County', description: 'Photo & video bundles with fast delivery.', contact: 'studio@lenslight.com', phone: '(555) 444-5566', image: '🎥' },
+      { id: 'r5', name: 'Elegant Furniture Rentals', category: 'rental-chairs', rating: 4.9, reviews: 156, priceRange: '$150–350/50', location: 'Metro Area', description: 'Premium furniture rentals: Chiavari chairs, lounge seating, tables, and decor.', contact: 'rentals@elegantfurniture.com', phone: '(555) 555-6677', image: '🪑🛋️' },
+      { id: 'r6', name: 'Party Furniture Co.', category: 'rental-chairs', rating: 4.5, reviews: 62, priceRange: '$100–250/50', location: 'Southside', description: 'Budget-friendly chair and furniture rentals for parties and outdoor events.', contact: 'orders@partyfurnitureco.com', phone: '(555) 666-7788', image: '🪑🛋️' },
+      { id: 'r7', name: 'Skyline Tent & Canopy', category: 'rental-canopy', rating: 4.8, reviews: 108, priceRange: '$800–2,000', location: 'Greater Metro', description: 'Frame tents & clear-span structures.', contact: 'info@skylinetent.com', phone: '(555) 777-8899', image: '⛺' },
+      { id: 'r8', name: 'Shade Pro Rentals', category: 'rental-canopy', rating: 4.6, reviews: 81, priceRange: '$500–1,500', location: 'East Valley', description: 'Affordable canopy & tent rentals.', contact: 'rent@shadepro.com', phone: '(555) 888-9900', image: '⛺' }
     ];
-    
-    let allTests = [...sampleTests];
-    for (let i = 0; i < 50; i++) {
-        allTests.push({
-            stage: stagesList[i % stagesList.length],
-            text: `Sample test ${i+1}: "Testing your response..."`,
-            bad: "Defensive over-explanation.",
-            good1: "Amused: 'Cute test. Next.'",
-            good2: "Frame flip: 'You're adorable when you test me.'",
-            frame: "Frame: Stay amused."
-        });
+
+    let expenses = [...DEFAULT_EXPENSES];
+    let vendors = [...DEFAULT_VENDORS];
+    let savedEvents = [...DEFAULT_SAVED_EVENTS];
+    let settings = {...DEFAULT_SETTINGS};
+
+    function loadFromStorage() {
+      try {
+        expenses = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'expenses')) || [...DEFAULT_EXPENSES];
+        vendors = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'vendors')) || [...DEFAULT_VENDORS];
+        savedEvents = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'saved_events')) || [...DEFAULT_SAVED_EVENTS];
+        settings = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'settings')) || {...DEFAULT_SETTINGS};
+      } catch(e) {
+        expenses = [...DEFAULT_EXPENSES];
+        vendors = [...DEFAULT_VENDORS];
+        savedEvents = [...DEFAULT_SAVED_EVENTS];
+        settings = {...DEFAULT_SETTINGS};
+      }
     }
-    
-    let activeStageFilter = "All";
-    let responseVisibility = {};
-    
-    const filtersContainer = document.getElementById("stageFilters");
-    const cardsGrid = document.getElementById("cardsGrid");
-    const resetBtn = document.getElementById("resetAllResponsesBtn");
-    
-    function buildFilters() {
-        if (!filtersContainer) return;
-        const stages = ["All", ...stagesList];
-        filtersContainer.innerHTML = "";
-        stages.forEach(st => {
-            const chip = document.createElement("div");
-            chip.classList.add("stage-chip");
-            if (activeStageFilter === st) chip.classList.add("active");
-            chip.innerText = st;
-            chip.addEventListener("click", () => {
-                activeStageFilter = st;
-                renderCards();
-                buildFilters();
-            });
-            filtersContainer.appendChild(chip);
-        });
+
+    function saveToStorage() {
+      try {
+        localStorage.setItem(STORAGE_PREFIX + 'expenses', JSON.stringify(expenses));
+        localStorage.setItem(STORAGE_PREFIX + 'vendors', JSON.stringify(vendors));
+        localStorage.setItem(STORAGE_PREFIX + 'saved_events', JSON.stringify(savedEvents));
+        localStorage.setItem(STORAGE_PREFIX + 'settings', JSON.stringify(settings));
+      } catch(e) {}
     }
-    
-    function escapeHtml(str) { return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;'); }
-    
-    function renderCards() {
-        if (!cardsGrid) return;
-        const filtered = activeStageFilter === "All" ? allTests : allTests.filter(t => t.stage === activeStageFilter);
-        cardsGrid.innerHTML = "";
-        filtered.forEach((test, idx) => {
-            const globalIdx = allTests.indexOf(test);
-            const card = document.createElement("div");
-            card.className = "test-card";
-            card.innerHTML = `
-                <div class="test-header"><span class="stage-badge">${escapeHtml(test.stage)}</span><i class="fas fa-comment-dots" style="color:#FFB347"></i></div>
-                <div class="test-quote">“${escapeHtml(test.text)}”</div>
-                <div class="response-buttons">
-                    <button class="resp-btn good" data-idx="${globalIdx}">✅ Good 1</button>
-                    <button class="resp-btn good2" data-idx="${globalIdx}">✅✅ Good 2</button>
-                    <button class="resp-btn bad" data-idx="${globalIdx}">❌ Bad</button>
-                    <button class="resp-btn frame" data-idx="${globalIdx}">🎭 Frame</button>
-                </div>
-                <div id="resp-${globalIdx}-good1" class="response-content hidden-resp"></div>
-                <div id="resp-${globalIdx}-good2" class="response-content hidden-resp"></div>
-                <div id="resp-${globalIdx}-bad" class="response-content hidden-resp"></div>
-                <div id="resp-${globalIdx}-frame" class="response-content hidden-resp"></div>
-            `;
-            cardsGrid.appendChild(card);
-            const good1Div = document.getElementById(`resp-${globalIdx}-good1`);
-            const good2Div = document.getElementById(`resp-${globalIdx}-good2`);
-            const badDiv = document.getElementById(`resp-${globalIdx}-bad`);
-            const frameDiv = document.getElementById(`resp-${globalIdx}-frame`);
-            if (good1Div) good1Div.innerHTML = `<i class="fas fa-laugh-beam"></i> <strong>Good Response #1:</strong><br> ${escapeHtml(test.good1)}`;
-            if (good2Div) good2Div.innerHTML = `<i class="fas fa-laugh-squint"></i> <strong>Good Response #2:</strong><br> ${escapeHtml(test.good2)}`;
-            if (badDiv) badDiv.innerHTML = `<i class="fas fa-skull-crossbones"></i> <strong>Why It Fails:</strong><br> ${escapeHtml(test.bad)}`;
-            if (frameDiv) frameDiv.innerHTML = `<i class="fas fa-chalkboard-user"></i> <strong>Frame Mastery:</strong><br> ${escapeHtml(test.frame)}`;
-            
-            const toggle = (type, divEl) => {
-                if (!divEl) return;
-                const key = `${globalIdx}_${type}`;
-                responseVisibility[key] = !responseVisibility[key];
-                divEl.classList.toggle("hidden-resp", !responseVisibility[key]);
-            };
-            card.querySelector(`.resp-btn.good`)?.addEventListener("click", () => toggle("good1", good1Div));
-            card.querySelector(`.resp-btn.good2`)?.addEventListener("click", () => toggle("good2", good2Div));
-            card.querySelector(`.resp-btn.bad`)?.addEventListener("click", () => toggle("bad", badDiv));
-            card.querySelector(`.resp-btn.frame`)?.addEventListener("click", () => toggle("frame", frameDiv));
-        });
+
+    function showToast(message, type = 'info', duration = 4000) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' };
+      toast.innerHTML = `<span class="text-xl">${icons[type] || icons.info}</span><span class="text-sm font-medium">${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, duration);
     }
-    
-    function resetAllResponses() { responseVisibility = {}; renderCards(); }
-    
-    const tabs = { heroTab: document.getElementById("heroTab"), decoderTab: document.getElementById("decoderTab"), masteryTab: document.getElementById("masteryTab"), ebookTab: document.getElementById("ebookTab") };
-    const desktopNavLinks = document.querySelectorAll("#desktopNavLinks a");
-    const mobileNavLinksItems = document.querySelectorAll("#mobileNavLinks a");
-    
-    function activateTab(tabId) {
-        Object.keys(tabs).forEach(id => { if(tabs[id]) tabs[id].classList.remove("active-tab-content"); });
-        if(tabs[tabId]) tabs[tabId].classList.add("active-tab-content");
-        desktopNavLinks.forEach(link => { link.classList.remove("active-tab"); if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab"); });
-        mobileNavLinksItems.forEach(link => { link.classList.remove("active-tab-mobile"); if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab-mobile"); });
-        if (tabId === "decoderTab" && cardsGrid && cardsGrid.children.length === 0) renderCards();
-        closeMobileMenu();
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
+      const active = document.getElementById(`tab-${tabId}`);
+      if (active) active.classList.add('active-tab');
+      document.querySelectorAll('.desktop-nav .tab-link').forEach(l => { l.style.color = l.dataset.tab === tabId ? '#38bdf8' : ''; });
+      document.querySelectorAll('.mobile-nav-link').forEach(l => { l.classList.toggle('active-mob', l.dataset.tab === tabId); });
+      if (tabId === 'dashboard') updateDashboard();
+      if (tabId === 'vendors') renderVendors();
+      if (tabId === 'recommended') renderRecommendedVendors('all');
     }
-    
-    function openMobileMenu() { document.getElementById("mobileMenuOverlay").classList.add("active"); document.getElementById("mobileMenuContainer").classList.add("open"); document.body.style.overflow = "hidden"; }
-    function closeMobileMenu() { document.getElementById("mobileMenuOverlay").classList.remove("active"); document.getElementById("mobileMenuContainer").classList.remove("open"); document.body.style.overflow = ""; }
-    
-    document.getElementById("menuToggleBtn")?.addEventListener("click", openMobileMenu);
-    document.getElementById("closeMenuBtn")?.addEventListener("click", closeMobileMenu);
-    document.getElementById("mobileMenuOverlay")?.addEventListener("click", (e) => { if (e.target === document.getElementById("mobileMenuOverlay")) closeMobileMenu(); });
-    desktopNavLinks.forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); activateTab(link.getAttribute("data-tab")); }));
-    mobileNavLinksItems.forEach(link => link.addEventListener("click", (e) => { e.preventDefault(); activateTab(link.getAttribute("data-tab")); }));
-    document.getElementById("heroCtaBtn")?.addEventListener("click", () => activateTab("decoderTab"));
-    resetBtn?.addEventListener("click", resetAllResponses);
-    
-    if(filtersContainer) buildFilters();
-    if(cardsGrid) renderCards();
-    activateTab("heroTab");
-</script>
+
+    function updateDashboard() {
+      const te = savedEvents.length;
+      const tr = savedEvents.reduce((s, e) => s + (e.revenue || 0), 0);
+      const tc = savedEvents.reduce((s, e) => s + (e.totalCost || 0), 0);
+      const np = tr - tc;
+      document.getElementById('dashboardTotalEvents').textContent = te;
+      document.getElementById('dashboardTotalRevenue').textContent = `$${tr.toLocaleString()}`;
+      document.getElementById('dashboardTotalCosts').textContent = `$${tc.toLocaleString()}`;
+      document.getElementById('dashboardNetProfit').textContent = `$${np.toLocaleString()}`;
+      document.getElementById('dashboardEventCount').textContent = `${te} event${te !== 1 ? 's' : ''}`;
+    }
+
+    function renderVendors(filter = 'all', search = '') {
+      const grid = document.getElementById('vendorsGrid');
+      const noMsg = document.getElementById('noVendorsMessage');
+      if (!grid) return;
+      let filtered = vendors;
+      if (filter !== 'all') filtered = filtered.filter(v => v.category === filter);
+      if (search) filtered = filtered.filter(v => v.name.toLowerCase().includes(search.toLowerCase()));
+      if (filtered.length === 0) { grid.innerHTML = ''; noMsg.classList.remove('hidden'); return; }
+      noMsg.classList.add('hidden');
+      const icons = { dj: '🎧', videography: '🎥', 'rental-chairs': '🪑🛋️', 'rental-canopy': '⛺', catering: '🍽️', venue: '🏛️', other: '📦' };
+      grid.innerHTML = filtered.map(v => `<div class="glass-card rounded-2xl p-5 sm:p-6 hover:border-[#38bdf8]/30 transition-all duration-300 group"><div class="flex items-start justify-between mb-4"><div class="flex items-center gap-3"><span class="text-2xl">${icons[v.category] || '📦'}</span><div><h3 class="font-semibold text-sm">${v.name}</h3><span class="text-xs text-[#38bdf8]">${v.category.replace('-', ' ')}</span></div></div></div><div class="space-y-1 text-xs text-gray-400">${v.contact ? `<div>👤 ${v.contact}</div>` : ''}${v.email ? `<div>📧 ${v.email}</div>` : ''}${v.phone ? `<div>📞 ${v.phone}</div>` : ''}</div></div>`).join('');
+    }
+
+    function renderRecommendedVendors(filter = 'all') {
+      const grid = document.getElementById('recommendedGrid');
+      if (!grid) return;
+      let filtered = filter === 'all' ? recommendedVendors : recommendedVendors.filter(v => v.category === filter);
+      const stars = (rating) => '⭐'.repeat(Math.floor(rating)) + (rating % 1 >= 0.5 ? '½' : '');
+      grid.innerHTML = filtered.map(v => `<div class="glass-card rounded-2xl p-5 sm:p-6 hover:border-[#38bdf8]/30 transition-all duration-300 group"><div class="flex items-start gap-4 mb-4"><div class="text-4xl">${v.image}</div><div class="flex-1"><h3 class="font-semibold text-white text-sm sm:text-base">${v.name}</h3><p class="text-xs text-[#38bdf8] uppercase tracking-wider mt-1">${v.category.replace('-', ' ')}</p><div class="flex items-center gap-1 mt-1"><span class="text-yellow-400 text-xs">${stars(v.rating)}</span><span class="text-gray-500 text-xs">${v.rating} (${v.reviews})</span></div></div></div><p class="text-gray-400 text-xs sm:text-sm mb-3">${v.description}</p><div class="space-y-1 text-xs text-gray-500 mb-4"><div>💰 ${v.priceRange}</div><div>📍 ${v.location}</div></div></div>`).join('');
+    }
+
+    loadFromStorage();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('eventName').value = settings.eventName || '';
+      document.getElementById('guestCount').value = settings.guestCount || '0';
+      document.getElementById('ticketPrice').value = settings.ticketPrice || '0';
+      document.getElementById('targetProfit').value = settings.targetProfit || '0';
+
+      document.querySelectorAll('.desktop-nav .tab-link').forEach(l => { l.addEventListener('click', () => switchTab(l.dataset.tab)); });
+      document.querySelectorAll('.mobile-nav-link').forEach(l => { l.addEventListener('click', (e) => { e.preventDefault(); switchTab(l.dataset.tab); closeMobileMenu(); }); });
+
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuOverlay = document.getElementById('menuOverlay');
+      function openMobileMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+      function closeMobileMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+      document.getElementById('hamburgerBtn').addEventListener('click', openMobileMenu);
+      document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
+      menuOverlay.addEventListener('click', closeMobileMenu);
+
+      document.getElementById('hero-cta').addEventListener('click', () => switchTab('plan'));
+
+      document.querySelectorAll('.rec-filter').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.rec-filter').forEach(b => { b.classList.remove('active', 'bg-[#38bdf8]/20', 'text-[#38bdf8]'); b.classList.add('text-gray-400', 'border-white/10'); }); btn.classList.add('active', 'bg-[#38bdf8]/20', 'text-[#38bdf8]'); btn.classList.remove('text-gray-400', 'border-white/10'); renderRecommendedVendors(btn.dataset.filter); }); });
+
+      updateDashboard();
+      renderVendors();
+      renderRecommendedVendors('all');
+    });
+  </script>
 </body>
 </html>
