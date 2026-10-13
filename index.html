@@ -1,699 +1,858 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  
-  <title>PlanAlchemy | Event Cost Calculator & Vendor Manager | DJ, Videography, Rentals</title>
-  <meta name="description" content="PlanAlchemy transforms event costs into profits. Calculate DJ services, videography, furniture & canopy rentals with our free event budget calculator and vendor directory.">
-  <meta name="keywords" content="event cost calculator, DJ cost calculator, videography pricing tool, furniture rental calculator, canopy rental cost, party equipment rental pricing, event budget planner, PlanAlchemy">
-  <meta name="theme-color" content="#0f172a">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          screens: {
-            'xs': '480px','sm': '640px','md': '768px','lg': '1024px','xl': '1280px','2xl': '1536px',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Shit Test Decoder | Amused Frame Control Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0f1e;
+            color: #eef2ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
-      }
-    }
-  </script>
-  
-  <style>
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #0f172a;
-      margin: 0;
-      overflow-x: hidden;
-      color: #f1f5f9;
-    }
-    .luxury-bg {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-      position: relative;
-    }
-    .luxury-bg::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 20% 30%, rgba(56,189,248,0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 70%, rgba(192,132,252,0.06) 0%, transparent 50%),
-                  radial-gradient(circle at 50% 50%, rgba(129,140,248,0.04) 0%, transparent 50%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    
-    .glass-card {
-      background: rgba(15,23,42,0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(56,189,248,0.2);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(56,189,248,0.05);
-    }
-    
-    .gold-text {
-      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .gold-border-glow {
-      border: 1px solid rgba(56,189,248,0.2);
-      transition: all 0.3s ease;
-    }
-    .gold-border-glow:focus-within, .gold-border-glow:hover {
-      border-color: rgba(56,189,248,0.6);
-      box-shadow: 0 0 20px rgba(56,189,248,0.15);
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
-      color: #fff;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-primary:hover {
-      box-shadow: 0 0 30px rgba(56,189,248,0.3);
-      transform: translateY(-1px);
-    }
-    .btn-secondary {
-      border: 1px solid rgba(56,189,248,0.2);
-      color: #94a3b8;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      background: transparent;
-    }
-    .btn-secondary:hover {
-      border-color: #38bdf8;
-      color: #38bdf8;
-    }
-    
-    .tab-content {
-      display: none;
-      width: 100%;
-      padding-top: 2rem;
-      padding-bottom: 3rem;
-    }
-    .tab-content.active-tab {
-      display: block;
-    }
-    
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 100%;
-      max-width: 400px;
-      height: 100vh;
-      height: 100dvh;
-      background: linear-gradient(135deg, rgba(15,23,42,0.99) 0%, rgba(30,41,59,0.99) 100%);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border-left: 1px solid rgba(56,189,248,0.2);
-      box-shadow: -20px 0 60px rgba(0,0,0,0.8);
-      z-index: 100;
-      transition: right 0.45s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-    }
-    .mobile-menu.open {
-      right: 0;
-    }
-    .mobile-menu-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1.5rem 1.8rem;
-      border-bottom: 1px solid rgba(56,189,248,0.1);
-    }
-    .menu-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-    .menu-close-btn {
-      background: rgba(56,189,248,0.1);
-      border: 1px solid rgba(56,189,248,0.3);
-      color: #38bdf8;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .menu-close-btn:hover {
-      background: rgba(56,189,248,0.2);
-      transform: rotate(90deg);
-    }
-    .mobile-menu-nav {
-      flex: 1;
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .mobile-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 1rem 1.2rem;
-      font-size: 1rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94a3b8;
-      transition: all 0.3s;
-      text-decoration: none;
-      cursor: pointer;
-      border-radius: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-    .mobile-nav-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, #38bdf8, #818cf8, #c084fc);
-      border-radius: 0 3px 3px 0;
-      transform: scaleY(0);
-      transition: transform 0.3s ease;
-    }
-    .mobile-nav-link:hover {
-      color: #38bdf8;
-      background: rgba(56,189,248,0.08);
-      padding-left: 1.6rem;
-    }
-    .mobile-nav-link:hover::before {
-      transform: scaleY(1);
-    }
-    .mobile-nav-link.active-mob {
-      color: #38bdf8;
-      background: rgba(56,189,248,0.12);
-    }
-    .mobile-nav-link.active-mob::before {
-      transform: scaleY(1);
-    }
-    .nav-icon {
-      font-size: 1.3rem;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(56,189,248,0.08);
-      border-radius: 10px;
-    }
-    .mobile-menu-footer {
-      padding: 1.5rem 1.8rem;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      text-align: center;
-    }
-    .menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(6px);
-      z-index: 99;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
-    }
-    .menu-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      z-index: 110;
-      padding: 10px;
-      background: rgba(56,189,248,0.08);
-      border-radius: 12px;
-      border: 1px solid rgba(56,189,248,0.2);
-    }
-    .hamburger:hover {
-      background: rgba(56,189,248,0.15);
-    }
-    .hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: #38bdf8;
-      border-radius: 2px;
-    }
-    
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: rgba(56,189,248,0.05);
-      border-radius: 50px;
-      padding: 0.35rem;
-      border: 1px solid rgba(56,189,248,0.2);
-    }
-    .desktop-nav .tab-link {
-      padding: 0.6rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      transition: all 0.3s;
-      white-space: nowrap;
-      color: #94a3b8;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-    .desktop-nav .tab-link:hover {
-      color: #38bdf8;
-      background: rgba(56,189,248,0.1);
-    }
-    .nav-separator {
-      width: 1px;
-      height: 20px;
-      background: rgba(56,189,248,0.2);
-      margin: 0 0.25rem;
-    }
-    
-    /* Uniform icon color in desktop nav */
-    .desktop-nav .tab-link {
-      filter: grayscale(100%) brightness(1.2);
-    }
-    .desktop-nav .tab-link:hover,
-    .desktop-nav .tab-link[style*="color:#38bdf8"] {
-      filter: none;
-    }
-    
-    .rec-filter {
-      cursor: pointer;
-    }
-    .rec-filter.active {
-      background: rgba(56,189,248,0.2);
-      color: #38bdf8;
-    }
-    
-    .toast-container {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .toast {
-      background: rgba(15,23,42,0.95);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(56,189,248,0.2);
-      border-radius: 16px;
-      padding: 16px 24px;
-      min-width: 300px;
-      max-width: 450px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      animation: slideInRight 0.4s cubic-bezier(0.4,0,0.2,1);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .toast.removing {
-      animation: slideOutRight 0.3s cubic-bezier(0.4,0,0.2,1) forwards;
-    }
-    
-    @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    @keyframes slideOutRight {
-      from { transform: translateX(0); opacity: 1; }
-      to { transform: translateX(100%); opacity: 0; }
-    }
-    @keyframes shimmer {
-      0% { background-position: -200% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .shimmer-text {
-      background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s linear infinite;
-    }
-    
-    .offline-indicator {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #38bdf8;
-      color: #0f172a;
-      padding: 8px 20px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      z-index: 300;
-      display: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .offline-indicator.show {
-      display: block;
-    }
-    
-    input[type="number"], input[type="text"], input[type="email"],
-    input[type="tel"], textarea, select {
-      background: rgba(15,23,42,0.8);
-      border: 1px solid rgba(56,189,248,0.2);
-      color: #f1f5f9;
-      transition: all 0.25s;
-    }
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: #38bdf8;
-      box-shadow: 0 0 0 3px rgba(56,189,248,0.15);
-    }
-    
-    @media (max-width: 768px) {
-      .desktop-nav { display: none !important; }
-      .hamburger { display: flex; }
-      .toast { min-width: 250px; max-width: 90vw; }
-    }
-    @media (max-width: 480px) {
-      .mobile-menu { max-width: 100%; }
-    }
-  </style>
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background: linear-gradient(125deg, #0a0f1e, #141b2b, #1a1f2f, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientFlow 18s ease infinite;
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 40%, rgba(255, 100, 100, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        /* ========== FULL-WIDTH STICKY NAVBAR ========== */
+        .glass-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background: rgba(10, 18, 35, 0.82);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+            z-index: 1000;
+            padding: 0.9rem 2.5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #FFD166;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .logo i { color: #FF6B6B; font-size: 1.4rem; }
+        .nav-links {
+            display: flex;
+            flex-direction: row;
+            gap: 1.8rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            color: #f0f3fa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            position: relative;
+            white-space: nowrap;
+        }
+        .nav-links a:hover { color: #FFB347; }
+        .nav-links a.active-tab { color: #FFB347; }
+        .nav-links a.active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, #FFB347, #FF6B6B);
+            border-radius: 2px;
+        }
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0.3s, opacity 0.3s ease;
+        }
+        .mobile-menu-overlay.active { visibility: visible; opacity: 1; }
+        .mobile-menu-container {
+            position: fixed;
+            top: 0; right: -300px;
+            width: 300px; height: 100%;
+            background: rgba(15, 25, 45, 0.98);
+            backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 2001;
+            transition: right 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+        }
+        .mobile-menu-container.open { right: 0; }
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,200,0.2);
+        }
+        .mobile-menu-header .logo-small { font-size: 1.3rem; font-weight: 800; color: #FFD166; }
+        .close-menu-btn { background: none; border: none; color: #FFB347; font-size: 1.5rem; cursor: pointer; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 1.5rem; }
+        .mobile-nav-links a {
+            color: #f0f3fa;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+        }
+        .mobile-nav-links a:hover, .mobile-nav-links a.active-tab-mobile {
+            color: #FFB347;
+            border-left-color: #FFB347;
+            background: rgba(255, 180, 80, 0.1);
+        }
+
+        /* Account for fixed navbar height */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 7rem 2rem 2rem;
+        }
+        .hero-content {
+            max-width: 800px;
+            background: rgba(10, 20, 30, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,240,0.25);
+            animation: fadeUp 0.8s ease;
+        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-content h1 {
+            font-family: 'Caveat', 'Playfair Display', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #FFE6B0;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+        .hero-content p { font-size: 1.15rem; margin-bottom: 2rem; color: #f0f3ff; font-weight: 500; }
+        .cta-btn {
+            background: linear-gradient(95deg, #FF6B6B, #FF8E53);
+            border: none;
+            padding: 1rem 2.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 3rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 20px -5px rgba(255, 107, 107, 0.4);
+        }
+        .cta-btn:hover { transform: scale(1.02); box-shadow: 0 15px 25px -5px rgba(255, 107, 107, 0.6); }
+
+        .tab-content { display: none; background: transparent; padding: 7rem 2rem 5rem; }
+        .tab-content.active-tab-content { display: block; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #FFE6B0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .stage-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-bottom: 2.5rem; margin-top: 1rem; }
+        .stage-chip {
+            background: rgba(255,255,245,0.08);
+            backdrop-filter: blur(8px);
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255,255,200,0.2);
+            font-size: 0.9rem;
+        }
+        .stage-chip:hover {
+            background: rgba(255, 200, 120, 0.2);
+            border-color: rgba(255, 200, 100, 0.6);
+            box-shadow: 0 0 15px rgba(255, 180, 80, 0.4);
+            transform: translateY(-2px);
+        }
+        .stage-chip.active {
+            background: linear-gradient(135deg, #e65c00, #FF8C42);
+            color: #ffffff;
+            border-color: #FFD966;
+            box-shadow: 0 0 20px rgba(230, 92, 0, 0.6);
+        }
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .test-card {
+            background: rgba(20, 30, 48, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255,255,210,0.2);
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .test-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 200, 100, 0.7);
+            box-shadow: 0 0 25px rgba(255, 180, 80, 0.3);
+            background: rgba(30, 45, 70, 0.7);
+        }
+        .test-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin-bottom: 1rem; border-bottom: 1px dashed rgba(255,215,150,0.4); padding-bottom: 0.5rem; }
+        .stage-badge { background: #FF8C42; color: #0a0f1e; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.8rem; border-radius: 20px; }
+        .test-quote { font-size: 1rem; font-weight: 600; margin: 1rem 0; color: #FFF3E0; font-style: italic; border-left: 3px solid #FF9F4A; padding-left: 1rem; }
+        .response-buttons { display: flex; gap: 0.6rem; margin: 1rem 0; flex-wrap: wrap; }
+        .resp-btn {
+            background: rgba(0,0,0,0.55);
+            border: 1px solid rgba(255,160,80,0.7);
+            padding: 0.4rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #FFD9A5;
+        }
+        .resp-btn:hover { transform: translateY(-2px); box-shadow: 0 0 12px rgba(255, 180, 80, 0.5); background: rgba(0,0,0,0.7); }
+        .resp-btn.good { border-color: #6BCB77; color: #C8FFC8; }
+        .resp-btn.good2 { border-color: #4D9DE0; color: #C2E4FF; }
+        .resp-btn.bad { border-color: #FF6B6B; color: #FFBEBE; }
+        .resp-btn.frame { border-color: #B57EDC; color: #E5C9FF; }
+        .response-content { background: rgba(0, 0, 0, 0.65); border-radius: 1.2rem; padding: 1rem; margin-top: 0.6rem; font-size: 0.88rem; border-left: 3px solid #FFB347; line-height: 1.5; }
+        .hidden-resp { display: none; }
+        .reset-all-btn { display: block; margin: 2rem auto 0; background: #2C3E66; border: none; padding: 0.8rem 2rem; border-radius: 3rem; color: white; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
+        .reset-all-btn:hover { background: #FF6B6B; box-shadow: 0 0 18px rgba(255, 107, 107, 0.5); transform: scale(1.02); }
+        .test-count { text-align: center; color: #b0bad5; font-size: 0.85rem; margin-top: 0.5rem; }
+        .ebook-container { max-width: 1000px; margin: 0 auto; background: rgba(20, 30, 48, 0.65); backdrop-filter: blur(12px); border-radius: 2rem; border: 1px solid rgba(255,255,210,0.2); padding: 2.5rem; }
+        .ebook-header { text-align: center; margin-bottom: 2rem; }
+        .ebook-header h2 { font-family: 'Caveat', cursive; font-size: 2.8rem; color: #FFD966; margin-bottom: 0.5rem; }
+        .ebook-header p { color: #c0c8e0; }
+        .ebook-preview { background: rgba(0,0,0,0.4); border-radius: 1.5rem; padding: 1.5rem; margin: 2rem 0; border-left: 4px solid #FF8C42; }
+        .ebook-preview h3 { color: #FFB347; margin-bottom: 1rem; }
+        .ebook-preview ul { list-style: none; padding-left: 0; }
+        .ebook-preview li { padding: 0.5rem 0; border-bottom: 1px dashed rgba(255,255,200,0.1); display: flex; align-items: center; gap: 0.8rem; font-size: 0.92rem; }
+        .ebook-preview li i { color: #6BCB77; width: 24px; }
+        .download-btn { display: block; width: fit-content; margin: 2rem auto 0; background: linear-gradient(135deg, #FF6B6B, #FF8E53); border: none; padding: 1rem 2.5rem; font-size: 1.2rem; font-weight: 700; border-radius: 3rem; color: white; cursor: pointer; transition: all 0.3s ease; }
+        .download-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 107, 107, 0.6); }
+        .ebook-features { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2rem 0; }
+        .feature-badge { background: rgba(255,255,245,0.1); border-radius: 40px; padding: 0.4rem 1.2rem; font-size: 0.85rem; border: 1px solid rgba(255,200,100,0.3); }
+        footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #b0bad5; border-top: 1px solid rgba(255,255,200,0.1); margin-top: 2rem; }
+
+        @media (max-width: 680px) {
+            .glass-nav { padding: 0.7rem 1.2rem; }
+            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 1.6rem; padding: 0.5rem 1.2rem; }
+            .ebook-container { padding: 1.5rem; }
+            .ebook-header h2 { font-size: 2rem; }
+            .tab-content { padding: 6rem 1.2rem 4rem; }
+            .hero { padding: 6rem 1.2rem 2rem; }
+        }
+        @media (max-width: 480px) {
+            .glass-nav { padding: 0.7rem 1rem; }
+            .logo { font-size: 1.25rem; }
+            .logo i { font-size: 1.15rem; }
+            .hero-content h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.4rem; }
+        }
+    </style>
 </head>
-<body class="luxury-bg antialiased">
+<body>
 
-  <div class="offline-indicator" id="offlineIndicator">📡 You're offline — app still works!</div>
-  <div class="toast-container" id="toastContainer"></div>
-  <div id="modalContainer"></div>
+<div class="animated-bg"></div>
 
-  <!-- Main Navigation -->
-  <nav class="glass-card fixed top-0 inset-x-0 z-50 border-b px-3 xs:px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between" style="border-color:rgba(56,189,248,0.1)">
-    <div class="flex items-center gap-2">
-      <div class="text-xl xs:text-2xl sm:text-3xl font-bold tracking-wide gold-text shrink-0" style="font-family:'Playfair Display',serif">PlanAlchemy</div>
+<nav class="glass-nav">
+    <div class="logo"><span><i class="fas fa-dragon"></i> ShitTest.Guru</span></div>
+    <div class="nav-links" id="desktopNavLinks">
+        <a data-tab="heroTab" class="active-tab">🏠 Home</a>
+        <a data-tab="decoderTab">📖 Decoder</a>
+        <a data-tab="masteryTab">🧠 Mastery</a>
+        <a data-tab="ebookTab">📘 Ebook</a>
     </div>
-    <div class="desktop-nav">
-      <button class="tab-link" data-tab="home" style="color:#38bdf8">🏠 Home</button><span class="nav-separator"></span>
-      <button class="tab-link" data-tab="dashboard">📊 Dashboard</button><span class="nav-separator"></span>
-      <button class="tab-link" data-tab="plan">📋 Plan Event</button><span class="nav-separator"></span>
-      <button class="tab-link" data-tab="vendors">👥 My Vendors</button><span class="nav-separator"></span>
-      <button class="tab-link" data-tab="recommended">⭐ Recommended</button><span class="nav-separator"></span>
-      <button class="tab-link" data-tab="about">ℹ️ About</button>
-    </div>
-    <div class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></div>
-  </nav>
+    <button class="menu-toggle" id="menuToggleBtn"><i class="fas fa-bars"></i></button>
+</nav>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="menu-overlay" id="menuOverlay"></div>
-  
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-    <div class="mobile-menu-header">
-      <div>
-        <span class="menu-logo gold-text">PlanAlchemy</span>
-      </div>
-      <button class="menu-close-btn" id="closeMenuBtn" aria-label="Close menu">✕</button>
+<div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <div class="mobile-menu-container" id="mobileMenuContainer">
+        <div class="mobile-menu-header"><span class="logo-small"><i class="fas fa-dragon"></i> ShitTest</span><button class="close-menu-btn" id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
+        <div class="mobile-nav-links" id="mobileNavLinks">
+            <a data-tab="heroTab">🏠 Home</a>
+            <a data-tab="decoderTab">📖 Decoder</a>
+            <a data-tab="masteryTab">🧠 Mastery</a>
+            <a data-tab="ebookTab">📘 Ebook</a>
+        </div>
     </div>
-    <nav class="mobile-menu-nav">
-      <a class="mobile-nav-link active-mob" data-tab="home"><span class="nav-icon">🏠</span><span>Home</span></a>
-      <a class="mobile-nav-link" data-tab="dashboard"><span class="nav-icon">📊</span><span>Dashboard</span></a>
-      <a class="mobile-nav-link" data-tab="plan"><span class="nav-icon">📋</span><span>Plan Event</span></a>
-      <a class="mobile-nav-link" data-tab="vendors"><span class="nav-icon">👥</span><span>My Vendors</span></a>
-      <a class="mobile-nav-link" data-tab="recommended"><span class="nav-icon">⭐</span><span>Recommended</span></a>
-      <a class="mobile-nav-link" data-tab="about"><span class="nav-icon">ℹ️</span><span>About</span></a>
-    </nav>
-    <div class="mobile-menu-footer">
-      <p class="text-xs text-gray-500 tracking-wider">© 2024 PlanAlchemy</p>
-      <p class="text-xs text-gray-600 mt-1">Craft your event. Master your margins.</p>
-    </div>
-  </div>
+</div>
 
-  <!-- Main Content -->
-  <main class="relative pt-16 sm:pt-20">
-    
-    <!-- HOME TAB -->
-    <section id="tab-home" class="tab-content active-tab" style="padding:2rem 1.5rem 3rem">
-      <div class="flex flex-col justify-center" style="min-height:calc(100vh - 5rem)">
-        <div class="max-w-4xl mx-auto w-full py-8 sm:py-12 lg:py-16">
-          <div class="text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border mb-6" style="border-color:rgba(56,189,248,0.3);background:rgba(56,189,248,0.05)">
-              <span class="w-1.5 h-1.5 bg-[#38bdf8] rounded-full animate-pulse"></span>
-              <span class="text-xs uppercase tracking-[0.15em] text-[#38bdf8]">Smart Event Budget Calculator</span>
+<div id="heroTab" class="tab-content active-tab-content">
+    <section class="hero"><div class="hero-content">
+        <h1>⚔️ Master The Shit Test Universe ⚔️</h1>
+        <p>Every verbal curveball from first text to marriage — with frame-perspective answers for Bill Traps, Love Bombs & Chore Wars. Two good responses for every test. Amused mastery, zero neediness.</p>
+        <button class="cta-btn" id="heroCtaBtn">🔥 Enter the Decoder →</button>
+    </div></section>
+</div>
+
+<div id="decoderTab" class="tab-content"><div class="container">
+    <h2 class="section-title">⚡ Shit Test Decoder ⚡</h2>
+    <div class="stage-filters" id="stageFilters"></div>
+    <div class="cards-grid" id="cardsGrid"></div>
+    <p class="test-count" id="testCount"></p>
+    <button class="reset-all-btn" id="resetAllResponsesBtn"><i class="fas fa-undo-alt"></i> Reset all responses</button>
+    <footer>🎯 Click any button to reveal Good Responses, Bad Reply & Frame Control.</footer>
+</div></div>
+
+<div id="masteryTab" class="tab-content"><div class="container" style="max-width: 1000px; margin: 0 auto; padding: 2rem 1rem;">
+    <h2 class="section-title" style="margin-bottom: 2rem;">🧘 Amused Mastery & Frame Control</h2>
+    <div style="display: flex; flex-direction: column; gap: 2rem;">
+        <div class="test-card"><i class="fas fa-smile-wink" style="font-size: 2rem; color: #FFB347;"></i><h3 style="margin: 0.8rem 0;">The Golden Rule</h3><p>She throws a shit test to see if you'll crumble. Amused mastery means you treat every test as a joke. You're the game master. Frame = reality you choose.</p></div>
+        <div class="test-card"><i class="fas fa-chess-queen" style="font-size: 2rem; color: #6BCB77;"></i><h3 style="margin: 0.8rem 0;">Frame Control 101</h3><p>Never accept her frame. If she says "you're cheap", your frame: "I'm selectively generous." The master never defends, he redefines.</p></div>
+        <div class="test-card"><i class="fas fa-comment-dots" style="font-size: 2rem; color: #FF8E53;"></i><h3 style="margin: 0.8rem 0;">5 Core Response Archetypes</h3><p>Amplify | Agree & exaggerate | Misdirect with absurdity | Label the test | Reframe to "us"</p></div>
+        <div class="test-card"><i class="fas fa-skull" style="font-size: 2rem; color: #FF6B6B;"></i><h3 style="margin: 0.8rem 0;">Why Bad Replies Fail</h3><p>Defensiveness = guilt. Over-explaining = weakness. Apologizing = loss of frame. Amused Mastery laughs at the test itself.</p></div>
+        <div class="test-card"><i class="fas fa-balance-scale" style="font-size: 2rem; color: #B57EDC;"></i><h3 style="margin: 0.8rem 0;">The Equal-Adult Frame</h3><p>In Bill Traps, Love Bombs & Chore Wars, the strongest frame is <strong>"equal adult, not subordinate."</strong> Generous by choice, never by obligation. Warm, never swept up. You take full ownership of your share — because owning it permanently ends the fight. Dominance through competence beats dominance through refusal.</p></div>
+    </div>
+    <footer>📜 Practice amused neutrality until it becomes reflex.</footer>
+</div></div>
+
+<div id="ebookTab" class="tab-content">
+    <div class="container">
+        <div class="ebook-container">
+            <div class="ebook-header">
+                <h2><i class="fas fa-book-open"></i> Shit Test Mastery Ebook</h2>
+                <p>The complete guide — with humor, frame control, and zero neediness.</p>
             </div>
-            <h1 class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4" style="font-family:'Playfair Display',serif">
-              <span class="text-white/90">Calculate the </span><br>
-              <span class="shimmer-text">Perfect Price</span><br>
-              <span class="text-white/90">For Your Event</span>
-            </h1>
-            <p class="text-sm text-[#38bdf8]/80 italic mb-4 font-light" style="font-family:'Playfair Display',serif">"Craft your event. Master your margins."</p>
-            <p class="text-sm xs:text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-              The <strong>ideal price calculator</strong> for event planners. Instantly determine the perfect ticket price to cover your costs and hit your profit goals — whether you're booking a DJ, videographer, or renting furniture and canopies.
-            </p>
-            <button id="hero-cta" class="btn-primary px-8 xs:px-10 py-4 sm:py-5 rounded-full text-sm sm:text-base shadow-2xl inline-flex items-center gap-2">
-              <span>Plan Your Event Now</span><span>→</span>
-            </button>
-          </div>
+            <div class="ebook-features">
+                <span class="feature-badge"><i class="fas fa-check-circle"></i> 140+ Unique Examples</span>
+                <span class="feature-badge"><i class="fas fa-brain"></i> Frame Control Mastery</span>
+                <span class="feature-badge"><i class="fas fa-laugh"></i> Amused Scripts</span>
+            </div>
+            <div class="ebook-preview">
+                <h3><i class="fas fa-file-alt"></i> What's Inside:</h3>
+                <ul>
+                    <li><i class="fas fa-comment"></i> <strong>First Contact Tests</strong> — Low-energy openers & creep screening</li>
+                    <li><i class="fas fa-heart"></i> <strong>Dating Stage</strong> — The bill trap, ex-bombs, fight tests</li>
+                    <li><i class="fas fa-home"></i> <strong>Relationship</strong> — Silent treatment, social media, feelings tests</li>
+                    <li><i class="fas fa-ring"></i> <strong>Married Life</strong> — Prank wars, parenting blame, hobby vs. her</li>
+                    <li><i class="fas fa-shield-alt"></i> <strong>Comfort Tests</strong> — Reassurance without groveling</li>
+                    <li><i class="fas fa-trophy"></i> <strong>Value Tests</strong> — Status challenges, unfazed responses</li>
+                    <li><i class="fas fa-clipboard-list"></i> <strong>Qualification Tests</strong> — "What do you bring to the table?"</li>
+                    <li><i class="fas fa-ban"></i> <strong>Boundary Tests</strong> — Cancel plans, phone password demands</li>
+                    <li><i class="fas fa-receipt"></i> <strong>Bill Traps</strong> — Generous, never obligated. Contribute, don't fund.</li>
+                    <li><i class="fas fa-bomb"></i> <strong>Love Bombs</strong> — Warm, never swept. Slow the tempo without rejecting.</li>
+                    <li><i class="fas fa-broom"></i> <strong>Chore Wars</strong> — Own your share permanently. Refuse the parent-child dynamic.</li>
+                </ul>
+            </div>
+            <button id="downloadEbookBtn" class="download-btn"><i class="fas fa-download"></i> Download Free Ebook</button>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.8rem; color: #8a96b5;"><i class="fas fa-lock"></i> No email required. Instant download.</p>
         </div>
-      </div>
-    </section>
+    </div>
+</div>
 
-    <!-- DASHBOARD TAB -->
-    <section id="tab-dashboard" class="tab-content" style="padding:2rem 1.5rem 3rem">
-      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
-        <div class="mb-6 sm:mb-8 lg:mb-10">
-          <h2 class="text-3xl sm:text-4xl font-bold gold-text" style="font-family:'Playfair Display',serif">Dashboard</h2>
-          <p class="text-gray-400 text-sm sm:text-base mt-2">Your event financial overview</p>
-        </div>
-        <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Events</p><p class="text-3xl sm:text-4xl font-bold mt-2" id="dashboardTotalEvents">0</p></div>
-          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Revenue</p><p class="text-3xl sm:text-4xl font-bold gold-text mt-2" id="dashboardTotalRevenue">$0.00</p></div>
-          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Total Costs</p><p class="text-3xl sm:text-4xl font-bold mt-2" id="dashboardTotalCosts">$0.00</p></div>
-          <div class="glass-card rounded-xl sm:rounded-2xl p-5 sm:p-6"><p class="text-xs uppercase tracking-widest text-gray-400">Net Profit</p><p class="text-3xl sm:text-4xl font-bold gold-text mt-2" id="dashboardNetProfit">$0.00</p></div>
-        </div>
-        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-6">
-          <div class="flex justify-between items-center mb-4"><h3 class="text-xl font-semibold" style="font-family:'Playfair Display',serif">Saved Events</h3><span class="text-xs text-gray-400" id="dashboardEventCount">0 events</span></div>
-          <div class="overflow-x-auto"><table class="w-full text-left"><thead><tr class="border-b border-white/10 text-xs uppercase tracking-widest text-gray-400"><th class="pb-3 pr-4">Event Name</th><th class="pb-3 pr-4">Guests</th><th class="pb-3 pr-4">Ticket Price</th><th class="pb-3 pr-4">Total Cost</th><th class="pb-3 pr-4">Revenue</th><th class="pb-3">Profit</th><th class="pb-3"></th></tr></thead><tbody id="dashboardEventsTableBody" class="text-sm"><tr><td colspan="7" class="py-8 text-center text-gray-500">No saved events yet. Create one in the Plan Event tab!</td></tr></tbody></table></div>
-        </div>
-      </div>
-    </section>
+<script>
+    const shitTests = [
+        // ---------- FIRST CONTACT ----------
+        { stage: "First Contact", text: "Hey. (one-word opener)", bad: "Hey beautiful! I'm Mike, I like tacos and long walks.", good1: "Whoa, slow down, Shakespeare. Save some syllables for the rest of us.", good2: "Bold strategy. Let's see if it pays off. I'll give you a C+ for effort.", frame: "You're the prize. She needs to catch up to you." },
+        { stage: "First Contact", text: "So do you always message random women at night?", bad: "No! I never do this. You're special. I swear I'm a nice guy.", good1: "Only on nights with a full moon. Otherwise I use carrier pigeons.", good2: "Random? I spent 45 minutes crafting this opener. 'Hey' was draft seven.", frame: "Amused, unfazed. You're vetting her too." },
+        { stage: "First Contact", text: "Why are you single?", bad: "I don't know. I guess I just haven't found the right person. My ex said I was too caring.", good1: "My pet tarantula gives terrible relationship advice. Also, I leave the toilet seat up.", good2: "Because my last girlfriend said I was 'too emotionally available.' I'm in recovery.", frame: "Single by choice, not defect." },
+        { stage: "First Contact", text: "You're probably a player.", bad: "No! I'm loyal. I've only had two girlfriends. Ask anyone!", good1: "I have three. We share a Google Calendar. Wednesdays are for Janet.", good2: "You caught me. I'm actually a hologram. The real me is in a bunker.", frame: "Agree and exaggerate. Unshakeable." },
+        { stage: "First Contact", text: "You seem too good to be true.", bad: "Thank you so much! That's so sweet of you to say.", good1: "Give me twenty minutes. I'll disappoint you. It's a gift.", good2: "I'm not. I cry during insurance commercials. Keep your expectations low.", frame: "Humble-flawed, not perfect." },
+        { stage: "First Contact", text: "I bet you say that to all the girls.", bad: "No, I really mean it. You're different from the others.", good1: "Of course I do. There are 47 of you and only one me. Math is brutal.", good2: "I do. But the delivery is custom. This one took three drafts.", frame: "Playful ownership, no apology." },
+        { stage: "First Contact", text: "Are you a serial killer?", bad: "What? No! That's crazy. Why would you even ask that?", good1: "No. I'm a cereal killer. I've murdered three boxes of Cheerios this month.", good2: "Only on weekends. Weekdays I'm a mild-mannered accountant who sends memes.", frame: "Absurdity defuses suspicion." },
+        { stage: "First Contact", text: "What do you do for work? (early screening)", bad: "I work in mid-level logistics. It pays the bills. Not glamorous but stable.", good1: "I'm a professional overthinker. The pay is terrible but the hours are flexible.", good2: "I get paid to sit in a chair and pretend to understand emails. It's called 'corporate.'", frame: "Answer lightly. Don't pitch a resume." },
 
-    <!-- PLAN EVENT TAB -->
-    <section id="tab-plan" class="tab-content" style="padding:2rem 1.5rem 3rem">
-      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-          <div class="glass-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 xs:p-5 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
-            <h3 class="text-xl xs:text-2xl sm:text-3xl font-semibold gold-text" style="font-family:'Playfair Display',serif">Event Details</h3>
-            <div><label for="eventName" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Event Name</label><input type="text" id="eventName" placeholder="e.g., Summer Party" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm" value=""></div>
-            <div><div class="flex justify-between items-center mb-3"><span class="text-xs uppercase tracking-widest text-gray-400">Expenses</span><button id="addExpenseBtnDesktop" class="text-[#38bdf8] text-xs border border-[#38bdf8]/30 px-4 py-2 rounded-full hover:bg-[#38bdf8]/10 transition">+ Add</button></div><div id="expensesContainer" class="space-y-2 sm:space-y-3 max-h-48 overflow-y-auto pr-1"><p class="text-gray-500 text-xs text-center py-4">Add expenses like DJ, videography, furniture rental, etc.</p></div></div>
-            <div class="grid grid-cols-2 gap-3 sm:gap-4"><div><label for="guestCount" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Guest Count</label><input type="number" id="guestCount" value="0" min="0" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm"></div><div><label for="ticketPrice" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Ticket Price ($)</label><input type="number" id="ticketPrice" value="0" min="0" step="0.01" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm"></div></div>
-            <div class="flex gap-3 pt-2"><button id="saveEventBtn" class="flex-1 btn-primary px-4 py-3 rounded-xl text-sm">💾 Save Event to Dashboard</button><button id="resetEventBtn" class="flex-1 btn-secondary px-4 py-3 rounded-xl text-sm">🔄 Clear</button></div>
-          </div>
-          <div class="glass-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 xs:p-5 sm:p-6 md:p-8 flex flex-col space-y-4 sm:space-y-5">
-            <h3 class="text-xl xs:text-2xl sm:text-3xl font-semibold gold-text" style="font-family:'Playfair Display',serif">Profit Compass</h3>
-            <div class="grid grid-cols-2 gap-3 sm:gap-4"><div class="bg-white/5 rounded-lg sm:rounded-2xl p-4 sm:p-5"><p class="text-xs uppercase tracking-widest text-gray-400">Total Cost</p><p class="text-2xl sm:text-3xl font-bold mt-2" id="totalCostDisplay">$0.00</p></div><div class="bg-white/5 rounded-lg sm:rounded-2xl p-4 sm:p-5"><p class="text-xs uppercase tracking-widest text-gray-400">Break-Even</p><p class="text-xl sm:text-2xl font-semibold mt-2" id="breakEvenDisplay">0 tickets</p></div></div>
-            <div><label for="targetProfit" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Target Profit ($)</label><input type="number" id="targetProfit" value="0" min="0" step="100" class="w-full p-3 sm:p-4 rounded-lg gold-border-glow text-sm mb-4"><div class="bg-gradient-to-br from-[#1e293b] to-[#0f172a] rounded-lg sm:rounded-2xl p-4 sm:p-5 border border-[#38bdf8]/20"><p class="text-xs uppercase tracking-widest text-gray-400">Required Ticket Price</p><p class="text-2xl sm:text-3xl font-bold gold-text mt-2" id="requiredPriceDisplay">$0.00</p><div id="viabilityIndicator" class="mt-3 text-xs font-medium"><span class="text-gray-500">Enter values to see results</span></div></div></div>
-          </div>
-        </div>
-      </div>
-    </section>
+        // ---------- DATING STAGE ----------
+        { stage: "Dating Stage", text: "You're paying, right? (before the food arrives)", bad: "Umm, I thought we'd split? I'm not made of money.", good1: "Absolutely. And you're buying dessert with an embarrassing childhood story.", good2: "I'll pay. But you have to fake-laugh at my next three jokes. Even the bad ones.", frame: "Generous leader + playful." },
+        { stage: "Dating Stage", text: "My ex used to do that same thing with his fork.", bad: "Oh. Well I'm not him. Do you still talk to him? I'm not competing.", good1: "Oh yeah? My ex collected porcelain dolls. We all have our crosses to bear.", good2: "Should I take notes? 'Don't do the fork thing. Do the other fork thing.' Got it.", frame: "Treat ex as a sitcom character, not a threat." },
+        { stage: "Dating Stage", text: "Would you fight a guy who insulted me?", bad: "Of course! I'd destroy him. I took karate for three years.", good1: "I'd challenge him to a yo-yo duel. I'm undefeated.", good2: "Fight? No. I'd buy him a drink and ask why he's so angry. Then steal his stool.", frame: "Clever protector, not brute." },
+        { stage: "Dating Stage", text: "You're actually nice. Not like other guys.", bad: "Thank you! That means so much. My mom raised me right.", good1: "Oh no. The 'nice' word. Next you'll say I have a 'good personality.' I need a drink.", good2: "Don't worry. Give me twenty minutes. I'll disappoint you somehow.", frame: "Nice is the boring cousin of interesting." },
+        { stage: "Dating Stage", text: "What are you thinking right now?", bad: "Nothing. Just stuff. You look nice I guess.", good1: "I'm wondering if penguins have knees. Also, you look nice. Mostly penguins.", good2: "I'm calculating how many hot dogs I could eat before you'd leave. The number is high.", frame: "Playful inner monologue, not a romantic interrogation." },
+        { stage: "Dating Stage", text: "You're sweating.", bad: "Sorry. It's really hot in here. I'm just nervous I guess.", good1: "That's my cologne. It's called 'Nervous Charm.' Very exclusive.", good2: "I'm not sweating. I'm glistening. There's a difference. It's called effort.", frame: "Own it with humor, never apologize." },
+        { stage: "Dating Stage", text: "I'm not really looking for anything serious right now.", bad: "Oh. Okay. That's fine. I mean, I'm not either. Whatever you want.", good1: "Perfect. Neither am I. I'm just here for the breadsticks and mild emotional confusion.", good2: "Great. I'm a professional at casual. I once had a plant for six months and never named it.", frame: "Outcome independent. You're not waiting for her permission." },
+        { stage: "Dating Stage", text: "How many girls are you talking to right now?", bad: "Just you! I deleted the apps. I promise. I'm only focused on you.", good1: "Roughly twelve. But you're currently winning the bracket.", good2: "I don't keep a spreadsheet. That's a second-date activity.", frame: "Playful deflection. Don't overcommit early." },
+        { stage: "Dating Stage", text: "So when are you going to kiss me?", bad: "Uh, I don't know. Whenever you want? Should I do it now?", good1: "I was going to wait until you stopped asking. So... now it's a game.", good2: "Bold of you to assume I'm not already planning it in my head right now.", frame: "Confident, not permission-seeking." },
+        { stage: "Dating Stage", text: "You're not my usual type.", bad: "What's your type? I can change! I'm flexible!", good1: "Good. My usual type is 'emotionally unavailable.' We're both breaking patterns.", good2: "Neither is spicy food, but here I am, sweating and happy.", frame: "Unfazed. Your value isn't in her categories." },
 
-    <!-- MY VENDORS TAB -->
-    <section id="tab-vendors" class="tab-content" style="padding:2rem 1.5rem 3rem">
-      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
-        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8"><div><h2 class="text-3xl sm:text-4xl font-bold gold-text" style="font-family:'Playfair Display',serif">My Vendors</h2></div><button id="addVendorBtn" class="btn-primary px-6 py-3 rounded-xl text-sm">+ Add Vendor</button></div>
-        <div class="glass-card rounded-xl sm:rounded-2xl p-4 sm:p-5 mb-6"><div class="flex flex-col sm:flex-row gap-3"><input type="text" id="vendorSearch" placeholder="Search vendors..." class="flex-1 p-3 rounded-xl gold-border-glow text-sm"><select id="vendorCategoryFilter" class="p-3 rounded-xl gold-border-glow text-sm bg-[#0f172a]"><option value="all">All</option><option value="dj">🎧 DJ</option><option value="videography">🎥 Videography</option><option value="rental-chairs">🪑🛋️ Furniture</option><option value="rental-canopy">⛺ Canopy</option><option value="catering">🍽️ Catering</option><option value="venue">🏛️ Venue</option><option value="other">📦 Other</option></select></div></div>
-        <div id="vendorsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
-        <div id="noVendorsMessage" class="text-center py-12 text-gray-500">No vendors saved yet.</div>
-      </div>
-    </section>
+        // ---------- RELATIONSHIP ----------
+        { stage: "Relationship", text: "Oh, so you didn't see the dishes in the sink?", bad: "I was going to do them! You're always on my case. Fine, I'll do them now.", good1: "I saw them. I was giving them a marination period for character development.", good2: "I was waiting for them to reach sentience. They're so close. One more day.", frame: "Chores are a team sport, not a guilt trip." },
+        { stage: "Relationship", text: "You don't even care about my feelings, do you?", bad: "That's not true! I bought you flowers last month. I listened to your coworker story for twenty minutes.", good1: "I care so much I once googled 'how to care more' at 2am. What did I miss?", good2: "You're right. Let me try again. I care deeply. How was that? Too much? Less?", frame: "Validate without groveling or list-making." },
+        { stage: "Relationship", text: "I saw you liked your ex's post from 2016.", bad: "It was just a dog photo! Why are you looking at my history? That's crazy.", good1: "I was actually looking for a photo of her ugly lamp to send you. We mock it together.", good2: "I like everyone's dog photos. Even the neighbors'. It's a problem.", frame: "Turn it into a shared joke. Never defend." },
+        { stage: "Relationship", text: "Would you still love me if I gained 50 pounds?", bad: "Of course! But you should still stay healthy and exercise.", good1: "Yes. But I'm buying a bigger bed. Team effort.", good2: "Yes. But I'm also learning to cook kale. We suffer together.", frame: "Unconditional, with a playful condition." },
+        { stage: "Relationship", text: "You didn't notice my new haircut.", bad: "Sorry, I've had a lot on my mind. It looks nice I guess.", good1: "I noticed. I was waiting to see how long until you mentioned it. Four hours. Respect.", good2: "I noticed. I was just enjoying the reveal. Very dramatic. Very slow-motion.", frame: "Playful tease, not a defensive scramble." },
+        { stage: "Relationship", text: "You never initiate dates anymore.", bad: "We're both busy! I'm tired from work. Why is it always my job?", good1: "You're right. Tonight: pillow fort, bad reality TV, and the last of the wine. Romantic?", good2: "I initiated this conversation. That counts. I'm counting it.", frame: "Low-effort romance is still romance." },
+        { stage: "Relationship", text: "You love your phone more than me.", bad: "That's not true! I'm just checking work. Why are you so sensitive?", good1: "My phone doesn't make lasagna. You're winning. Barely. The bar is low.", good2: "Fair. Hand me your phone. We'll both be boring together. Solidarity.", frame: "Humor plus validation. No defensiveness." },
+        { stage: "Relationship", text: "You're always so stubborn.", bad: "I am NOT stubborn! I'm just right. There's a difference.", good1: "I'm not stubborn. I'm consistent. It's a leadership quality.", good2: "You're right. I'm impossible. But you love it. It's in the contract.", frame: "Own it playfully, don't fight the label." },
+        { stage: "Relationship", text: "Why don't you ever post me on social media?", bad: "I do! I posted that one photo three months ago. You saw it. Why do you need validation?", good1: "Because I'm keeping you a secret. It's my competitive advantage.", good2: "I'll post you when you admit my parallel parking is elite. Deal?", frame: "Light reframe. Don't get baited into a validation debate." },
+        { stage: "Relationship", text: "You're emotionally unavailable.", bad: "I am available! I cried at that commercial last week. See? I have feelings.", good1: "I'm not unavailable. I'm 'strategically mysterious.' It adds intrigue.", good2: "I'm available. I just process through sarcasm. It's my love language.", frame: "Amused dismissal, not a defense." },
 
-    <!-- RECOMMENDED VENDORS TAB -->
-    <section id="tab-recommended" class="tab-content" style="padding:2rem 1.5rem 3rem">
-      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12">
-        <div class="mb-8 sm:mb-10 text-center"><h2 class="text-3xl sm:text-4xl font-bold gold-text mb-3" style="font-family:'Playfair Display',serif">Recommended Vendors</h2></div>
-        <div class="flex flex-wrap gap-2 mb-8 justify-center"><button class="rec-filter active bg-[#38bdf8]/20 text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-[#38bdf8]/30" data-filter="all">All</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="dj">🎧 DJ</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="videography">🎥 Videography</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="rental-chairs">🪑🛋️ Furniture</button><button class="rec-filter text-gray-400 hover:text-[#38bdf8] px-5 py-2.5 rounded-full text-xs sm:text-sm border border-white/10 hover:border-[#38bdf8]/30 transition" data-filter="rental-canopy">⛺ Canopy</button></div>
-        <div id="recommendedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"></div>
-      </div>
-    </section>
+        // ---------- MARRIED LIFE ----------
+        { stage: "Married Life", text: "We need to talk. (long pause) Just kidding.", bad: "That's not funny! I thought you were leaving me. Don't do that again.", good1: "Good one. Next day: hand her a folder labeled 'Divorce Options' with a stick figure crying. PSYCH.", good2: "You got me. Now I'm legally allowed to hide your phone once a month. It's in the freezer.", frame: "Mutual prank warfare is healthy." },
+        { stage: "Married Life", text: "Your child just told his teacher 'you're not the boss of gravity.' That's your DNA.", bad: "Why is it always my fault? You're the one who lets him watch YouTube.", good1: "Yes. And next week he's learning about time dilation. The teacher can fight me.", good2: "He got the wit from me. The sass from you. We're both going to hell. Carpool?", frame: "United chaos, not blame." },
+        { stage: "Married Life", text: "You love video games more than me.", bad: "That's not fair. I work all week. I need to relax. You're so controlling.", good1: "The lawnmower doesn't complain about my snoring. But you make lasagna. You win.", good2: "I love you 80%. The games get 12%. The cat gets 8%. But I'll reallocate for cookies.", frame: "Negotiate with humor, don't defend the hobby." },
+        { stage: "Married Life", text: "Do you even love me anymore?", bad: "Of course I do! I work hard for this family. I put a roof over your head.", good1: "I love you so much I once let you have the last slice of pizza. That's saint-level.", good2: "I love you. I also find you annoying. Both are true. That's marriage.", frame: "Love isn't a courtroom. Answer with heart and humor." },
+        { stage: "Married Life", text: "You forgot our anniversary.", bad: "Oh no. I'm so sorry. I'll make it up to you. I'll take you somewhere nice.", good1: "I didn't forget. I was testing to see if YOU'D remember. We both failed. Now eat your steak.", good2: "I didn't forget. I'm just bad at calendars. My gift is this sincere apology and a foot rub.", frame: "Reframe as a test. Don't grovel." },
+        { stage: "Married Life", text: "Sometimes I wonder if I married the right person.", bad: "What?! What does that mean? Are you serious right now? After everything?", good1: "Same. I keep swiping left on your snoring. But here we are. Pass the milk.", good2: "You didn't. I was the only one who applied. Be grateful for the lack of options.", frame: "Treat it as a joke, not a divorce filing." },
+        { stage: "Married Life", text: "You never take me on dates anymore.", bad: "We're married! We have kids and a mortgage. What do you want from me?", good1: "You're right. Tonight: I'm taking you to the finest location in the house. The good couch.", good2: "I took you to the grocery store last Tuesday. That's a date if you squint.", frame: "Low-effort effort still counts. Keep it playful." },
+        { stage: "Married Life", text: "You're impossible to shop for.", bad: "I'm not that hard. I like stuff. Just get me a gift card or something.", good1: "Get me a nap. Or silence. Both are luxury items at this point.", good2: "Get me the satisfaction of watching you try to wrap a gift. That's the real present.", frame: "Self-aware joke, easy to receive." },
+        { stage: "Married Life", text: "You spend too much time in the garage.", bad: "I'm fixing things! Someone has to maintain this house. I need my space.", good1: "The garage doesn't talk back. That's the whole appeal. But I'll come in for dinner.", good2: "I'm building us a second living room. Out of tools. It's going poorly. Give me a minute.", frame: "Acknowledge, deflect with humor, return." },
+        { stage: "Married Life", text: "You never listen to me.", bad: "I do listen! You said you wanted salsa. I got salsa. What more do you want?", good1: "I'm listening right now. You're saying I never listen. That's ironic. I'm proud of you.", good2: "I listen. I just have a 45-minute delay. Like satellite radio. I'll respond around dinner.", frame: "Playful meta. Don't litigate the salsa." },
 
-    <!-- ABOUT TAB -->
-    <section id="tab-about" class="tab-content" style="padding:2rem 1.5rem 3rem">
-      <div class="max-w-7xl mx-auto mt-4 sm:mt-8 lg:mt-12 text-center">
-        <h2 class="text-4xl sm:text-5xl font-bold gold-text mb-6" style="font-family:'Playfair Display',serif">Craft Your Event. Master Your Margins.</h2>
-        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto mb-10">PlanAlchemy transforms event costs into clarity — every expense, every ticket, every profit margin calculated with precision.</p>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 max-w-3xl mx-auto"><div class="glass-card rounded-2xl p-6 sm:p-8"><div class="text-3xl mb-4">🎯</div><h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Our Mission</h3><p class="text-gray-400 text-sm">Making profitability accessible for celebrations of every scale.</p></div><div class="glass-card rounded-2xl p-6 sm:p-8"><div class="text-3xl mb-4">🔮</div><h3 class="text-xl font-semibold mb-3" style="font-family:'Playfair Display',serif">Our Vision</h3><p class="text-gray-400 text-sm">Creativity and commerce in perfect harmony.</p></div></div>
-        <div class="mt-10 text-xs text-gray-600"><p>© 2024 PlanAlchemy. All rights reserved.</p></div>
-      </div>
-    </section>
+        // ---------- LIVING TOGETHER ----------
+        { stage: "Living Together", text: "*Silent treatment* (she's clearly upset, won't say why)", bad: "Please talk to me. I'm sorry for whatever I did. Just tell me. I can't read your mind.", good1: "Make tea. Place it next to her. Leave a note: 'Naming spiders in the garage. Bob is my favorite.'", good2: "Sit next to her. After two minutes, whisper: 'This is nice. We should do silent therapy more often.'", frame: "Patient, amused, not chasing." },
+        { stage: "Living Together", text: "You always leave the toilet seat up.", bad: "Sorry, sorry, I'll never do it again. I keep forgetting. Please don't be mad.", good1: "I'm training you to be ambidextrous. You're welcome.", good2: "That's a feature, not a bug. It builds character. And upper body strength.", frame: "Reframe as a favor. No apology needed." },
+        { stage: "Living Together", text: "You use too much hot water.", bad: "I'll take shorter showers. I'm sorry. I didn't realize it was a problem.", good1: "I'm saving you from cold showers. You're welcome for the sacrifice.", good2: "I'm not using too much. I'm pre-heating the bathroom for you. It's a service.", frame: "Reframe as generosity." },
+        { stage: "Living Together", text: "You snore too loud.", bad: "I do not snore! I've never snored in my life. You're exaggerating.", good1: "That's my lion roar. It's a protective feature. You're welcome.", good2: "I don't snore. I purr. Aggressively. It's affection.", frame: "Reframe as a feature, not a flaw." },
+        { stage: "Living Together", text: "You'd rather hang with the boys than me.", bad: "That's not fair! I need guy time. You're being clingy. I can't have friends?", good1: "The boys don't complain about my snoring. But they also don't make cookies. You win.", good2: "I'd rather hang with you. But the boys have nachos. It's a logistical thing.", frame: "Negotiate playfully. Don't defend friendship as a right." },
+        { stage: "Living Together", text: "You never plan anything romantic.", bad: "I'm not a planner! You know this about me. Why do you always expect me to change?", good1: "Romance is subjective. Last week I put your towel on the warm radiator. That's poetry.", good2: "You're right. Tonight. Candles. The good takeout. I'll even put pants on.", frame: "Own it, correct course, keep it light." },
+        { stage: "Living Together", text: "You're on your phone at dinner again.", bad: "I'm just checking one thing. It's work. Stop nagging me. This is how I relax.", good1: "You're right. Put both phones in the drawer. We can be boring together. Face to face.", good2: "I'm reading about penguin knees. It's important. But fine. Phone down. Kiss me.", frame: "Comply with humor, don't defend the phone." },
+        { stage: "Living Together", text: "You left the garage door open all night.", bad: "I did not! I closed it. Why do you always blame me for everything?", good1: "I left it open intentionally. For the raccoons. They need a warm place to think.", good2: "I was testing our home security. It failed. I'll write a strongly worded report.", frame: "Absurd justification, then own it." },
+        { stage: "Living Together", text: "Why is the trash still in the kitchen?", bad: "I'll do it later! It's not even that full. You could take it out too, you know.", good1: "I'm letting it reach peak ripeness. It's a science experiment. Trust the process.", good2: "The trash and I have an understanding. It stays. I stay. We don't talk about it.", frame: "Playful stalling, then do it." },
+        { stage: "Living Together", text: "You're so messy.", bad: "I'm not messy! It's organized chaos. I know where everything is. Stop overreacting.", good1: "I'm not messy. I'm curating a lived-in aesthetic. Very editorial.", good2: "You're right. I'll clean the counter. But the socks stay. They're load-bearing.", frame: "Own it with a joke, then compromise." },
 
-  </main>
+        // ---------- TEXTING ----------
+        { stage: "Texting", text: "You're boring me.", bad: "Oh no, what did I do wrong? I'm sorry. Tell me how to fix it.", good1: "Good. I was worried you'd be entertained. Now we're equal.", good2: "Boring is stable. Stable is underrated. You're welcome for the peace.", frame: "Unfazed. Outcome independent." },
+        { stage: "Texting", text: "Prove you're not a catfish.", bad: "I can send you my ID and a selfie! I'll video call right now if you want.", good1: "Meet me at the aquarium. I'll bring tuna. You bring the skepticism.", good2: "I can't. If I prove it, the mystery dies. And the mystery is all I have.", frame: "Absurdity disarms suspicion." },
+        { stage: "Texting", text: "Why didn't you text back in 4 minutes?", bad: "Sorry! I was busy with work. I didn't see my phone. I'm so sorry.", good1: "I was fighting off a pack of wild squirrels. You're welcome.", good2: "I was composing a sonnet about your patience. It's taking a while.", frame: "Ridiculous excuse. Don't apologize for response time." },
+        { stage: "Texting", text: "You're so predictable.", bad: "I am not! I can be spontaneous. You don't know me. Watch.", good1: "Good. Predictable like a sunrise. Reliable and warm. You're welcome.", good2: "Predictable? I'm about to send you a photo of a duck. See? Chaos.", frame: "Reframe as a compliment." },
+        { stage: "Texting", text: "I bet you have a secret second phone.", bad: "No I don't! Check my bag. Check my pockets. I have nothing to hide. Why would you say that?", good1: "I have three. One for each personality. This is Greg. Greg says hi.", good2: "The second phone is a decoy. The real one is in a safe. The safe is also a decoy.", frame: "Agree and escalate." },
+        { stage: "Texting", text: "Are you even listening to me?", bad: "Yes I am! I heard everything. You said... uh... the thing about... I was listening.", good1: "I'm listening. I'm just filtering for the important parts. Like when you said 'dinner.'", good2: "I'm always listening. I just don't always obey. There's a difference. Ask my mom.", frame: "Playful honesty, no panic." },
+        { stage: "Texting", text: "You take forever to reply.", bad: "Sorry! I was driving. I had my hands full. I'll be faster, I promise.", good1: "I was building suspense. Did it work? Are you on the edge of your seat?", good2: "I reply in sonnets. Sonnets take time. Be grateful.", frame: "Reframe as strategy." },
+        { stage: "Texting", text: "You're ghosting me.", bad: "No I'm not! I'm right here. I replied. Why would you think that?", good1: "Not ghosting. Adding dramatic pauses for effect. I'm building tension.", good2: "Ghosting implies I left. I'm still here. Just slow. Like a haunted typewriter.", frame: "Reframe as artistic choice." },
+        { stage: "Texting", text: "Send me a picture of yourself right now.", bad: "Uh, okay. Hold on. Let me find a good one. I look bad right now.", good1: "Demanding. I like it. Send me one first. Fair trade.", good2: "I'm in witness protection. Photos are a liability. But here's a drawing.", frame: "Playful negotiation, not compliance." },
+        { stage: "Texting", text: "Why are you online but not replying to me?", bad: "Oh my god, I'm so sorry. I didn't see your message. I was just scrolling. I'm terrible.", good1: "I was online researching the mating habits of penguins. Your message deserved my full attention.", good2: "I was reading our old messages. For research. On why I'm so lucky.", frame: "Absurd deflection, no apology." },
 
-  <script>
-    // Service Worker for offline support
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register("data:application/javascript," + encodeURIComponent(
-          `const CACHE_NAME='planalchemy-v3';self.addEventListener('install',(e)=>{e.waitUntil(caches.open(CACHE_NAME).then((c)=>c.addAll(['/'])));});self.addEventListener('fetch',(e)=>{e.respondWith(caches.match(e.request).then((r)=>r||fetch(e.request)));});`
-        )).catch(() => {});
-      });
-    }
+        // ---------- COMFORT TESTS ----------
+        { stage: "Comfort Tests", text: "Do you even like me? Or am I just convenient?", bad: "Of course I like you! Why would you ask that? You're amazing and beautiful.", good1: "I like you. I also like pizza. But I don't share my pizza with just anyone. Elite circle.", good2: "Convenient? I had to climb over three ex-girlfriends to get here. You're very inconvenient.", frame: "Reassure with humor, not desperation." },
+        { stage: "Comfort Tests", text: "You're going to leave me eventually, aren't you?", bad: "No! Never! I promise I'll never leave you. You're my everything. I love you so much.", good1: "Probably. But first I'm going to annoy you for at least 40 more years. Buckle up.", good2: "Leave you? I haven't even finished stealing your hoodies yet. That's phase four.", frame: "Acknowledge fear playfully. Show long-term commitment through humor." },
+        { stage: "Comfort Tests", text: "You think I'm annoying, don't you?", bad: "No! You're not annoying at all. I love everything about you. Every single thing.", good1: "Annoying? You're a delightfully chaotic raccoon and I'm here for it.", good2: "Only when you steal the blankets. The rest of the time, you're tolerable. Barely.", frame: "Tease lightly while affirming affection." },
+        { stage: "Comfort Tests", text: "Why are you even with me?", bad: "Because you're beautiful and smart and funny and kind and perfect in every way.", good1: "Because you laugh at my bad jokes. That's a rare and valuable skill. I'm invested.", good2: "Honestly? I'm still trying to figure that out. But it's a fun mystery. I'll keep investigating.", frame: "Deflect with playful mystery. Avoid pedestalizing." },
+        { stage: "Comfort Tests", text: "You'd be happier with someone else.", bad: "No! You're perfect for me. I don't want anyone else. Don't say that.", good1: "Probably. But I'm too lazy to train someone new. You're stuck with me. Sorry.", good2: "Happier? I'm already at peak happiness. Any more and I'd float away. It's a safety concern.", frame: "Affirm without desperation." },
+        { stage: "Comfort Tests", text: "Do you still find me attractive?", bad: "Yes! Of course! You're beautiful. You're always beautiful. Always.", good1: "I find you attractive. Also annoying. Also attractive. It's a complex cocktail.", good2: "Attractive? I still get nervous when you wear that one shirt. It's embarrassing. For me.", frame: "Compliment with personality, not just appearance." },
+        { stage: "Comfort Tests", text: "You're too good for me.", bad: "No, you're too good for me! I'm the lucky one. I don't deserve you.", good1: "I know. But I'm also humble. So we balance out. It's math.", good2: "Stop. You'll make me arrogant. And I'm already insufferable. Ask my friends.", frame: "Reject the self-deprecating spiral. Stay light." },
+        { stage: "Comfort Tests", text: "I feel like you don't need me.", bad: "I do need you! I need you so much. You're my whole world. I can't do anything without you.", good1: "I don't need you. I want you. Need is desperate. Want is a choice. I keep choosing you.", good2: "I need you for the important things. Like reaching the top shelf. And emotional stability. Mostly the shelf.", frame: "Reframe need vs. want. Stronger frame." },
 
-    function updateOnlineStatus() {
-      const indicator = document.getElementById('offlineIndicator');
-      if (!navigator.onLine) {
-        indicator.classList.add('show');
-        setTimeout(() => indicator.classList.remove('show'), 3000);
-      }
-    }
-    window.addEventListener('offline', updateOnlineStatus);
-    if (!navigator.onLine) updateOnlineStatus();
+        // ---------- VALUE TESTS ----------
+        { stage: "Value Tests", text: "You don't make enough money to date me.", bad: "I'm working hard! I'll get a promotion soon. I promise. Just give me time.", good1: "Good thing my personality is currency. I'm a billionaire. Forbes is calling.", good2: "You're right. I'm poor. But I'm rich in dad jokes. And those appreciate over time.", frame: "Your worth isn't financial. Be amused, not defensive." },
+        { stage: "Value Tests", text: "My ex had a six-pack and a BMW.", bad: "Well, I go to the gym too! And my car is... a car. It runs. It's fine.", good1: "Cool. My ex had a pet iguana and a unicycle. We all have our crosses to bear.", good2: "Six-pack? I have a family-size bag of chips. Want some? I share.", frame: "Don't compete. Pivot to absurdity or self-deprecation." },
+        { stage: "Value Tests", text: "You're not really my type.", bad: "What is your type? I can change! I'm flexible. I'll be whatever you want.", good1: "Good. My type is 'disappointment.' So we're both breaking patterns. Progress.", good2: "Neither are anchovies. But here we are. Life's full of surprises. Enjoy the ride.", frame: "Unfazed. Your value doesn't depend on her categories." },
+        { stage: "Value Tests", text: "You're lucky to be with me.", bad: "I know. Thank you for giving me a chance. I'm so grateful. I'll do anything.", good1: "Lucky? I'm blessed. Also humble. Extremely humble. The most humble.", good2: "Shh. Don't tell anyone. They'll get jealous. And I can't handle the attention.", frame: "Agree but subvert with irony." },
+        { stage: "Value Tests", text: "You're not as successful as my friends' boyfriends.", bad: "I'm trying my best! I'll get there. Just wait. I'll prove you wrong.", good1: "Success is subjective. I once parallel parked perfectly on the first try. Undefeated.", good2: "Comparison is the thief of joy. I have a lot of joy. So I don't compare. Checkmate.", frame: "Don't compare. Define your own metrics." },
+        { stage: "Value Tests", text: "You're not tall enough for me.", bad: "I'm average height! That's fine. Height isn't everything. It doesn't matter.", good1: "I'm not tall. I'm concentrated. More flavor per inch. Like espresso.", good2: "Good. Short kings don't hit their heads on doorframes. Wins all around.", frame: "Own it. Don't argue about height." },
+        { stage: "Value Tests", text: "I need a man who can protect me.", bad: "I can protect you! I'm strong. I'll fight anyone. I've been working out.", good1: "I can protect you from bad jokes and low blood sugar. The two real threats.", good2: "I'd protect you by de-escalating. Violence is the last refuge. Also I'm fast. I can run.", frame: "Reframe protection as intelligence, not just force." },
+        { stage: "Value Tests", text: "What can you offer me that other guys can't?", bad: "I'm loyal! I'm caring! I'll treat you like a queen! I'll never cheat!", good1: "I can offer you a lifetime supply of sarcasm and terrible dance moves. Unique package.", good2: "Nothing. I'm not competing with other guys. I'm just here. You decide.", frame: "Don't sell yourself like a resume. Stay grounded." },
 
-    const STORAGE_PREFIX = 'planalchemy_';
-    const DEFAULT_EXPENSES = [];
-    const DEFAULT_VENDORS = [];
-    const DEFAULT_SAVED_EVENTS = [];
-    const DEFAULT_SETTINGS = { eventName: '', guestCount: '0', ticketPrice: '0', targetProfit: '0' };
+        // ---------- QUALIFICATION TESTS ----------
+        { stage: "Qualification Tests", text: "What do you bring to the table?", bad: "I'm loyal, caring, I have a job, I'm close with my family, I love kids...", good1: "I bring jokes, questionable dance moves, and I'm really good at killing spiders. What more?", good2: "A warm seat and an open mind. The rest is gravy. I'm a simple man.", frame: "She qualifies to YOU, not the other way around." },
+        { stage: "Qualification Tests", text: "Are you ambitious enough for me?", bad: "Yes! I'm going to be CEO one day. I have a five-year plan. I'm very ambitious.", good1: "Ambitious? I once finished an entire jar of pickles in one sitting. That's dedication.", good2: "Define ambitious. If it means 'ambitious about napping,' I'm a gold medalist.", frame: "Reframe ambition on your own terms." },
+        { stage: "Qualification Tests", text: "Can you handle a strong woman?", bad: "Of course! I love strong women. My mom is strong. I'm ready for anything.", good1: "Handle you? I can barely handle my own laundry. But we can figure it out together.", good2: "Strong? Good. I need someone who can open jars. My hand strength is embarrassing.", frame: "Treat it as a partnership, not a challenge." },
+        { stage: "Qualification Tests", text: "Prove you're different from other guys.", bad: "I'm not like them! I'm sensitive. I listen. I'm not a player. I'm different.", good1: "I can't prove anything. But I can make you laugh until you snort. That's unique.", good2: "Other guys? I'm still trying to be different from yesterday's me. One crisis at a time.", frame: "Don't perform. Be authentically amused." },
+        { stage: "Qualification Tests", text: "What's your five-year plan?", bad: "To be with you, hopefully. And get married. And start a family. That's the dream.", good1: "Five years? I can't even plan next Tuesday. But I'm open to suggestions. Flexible.", good2: "Same as my one-year plan: survive, thrive, and annoy you. Consistent vision.", frame: "Don't over-explain. Keep it light." },
+        { stage: "Qualification Tests", text: "Do you have your life together?", bad: "Yes! Mostly. I mean, I pay my bills. I do laundry. I'm an adult. I swear.", good1: "Absolutely. I have a plant that's still alive. That's the gold standard.", good2: "Define 'together.' If it means 'not on fire,' then yes. We're thriving.", frame: "Self-aware humor beats fake perfection." },
+        { stage: "Qualification Tests", text: "I need a man who knows what he wants.", bad: "I know what I want! I want you. I want a future. I want a family. I'm sure.", good1: "I know exactly what I want. I want the last slice of pizza. Everything else is negotiable.", good2: "I know what I want. I want a nap and a snack. And you. In that order. Kidding.", frame: "Confident but not overly eager." },
+        { stage: "Qualification Tests", text: "You're not dominant enough for me.", bad: "I can be dominant! I'll take charge. Watch me. I'll plan dinner right now.", good1: "Dominance is overrated. I prefer 'quietly in charge.' Like a cat. But taller.", good2: "I'm dominant in the ways that matter. Like deciding where we eat. And killing bugs.", frame: "Don't perform dominance. Redefine it." },
 
-    const recommendedVendors = [
-      { id: 'r1', name: 'Elite Sound DJs', category: 'dj', rating: 4.9, reviews: 127, priceRange: '$800–1,200', location: 'Downtown', description: 'Professional DJ services for all events.', contact: 'bookings@elitesound.com', phone: '(555) 111-2233', image: '🎧' },
-      { id: 'r2', name: 'Party Beats Entertainment', category: 'dj', rating: 4.7, reviews: 89, priceRange: '$600–1,000', location: 'Westside', description: 'Affordable DJ packages with MC included.', contact: 'info@partybeats.com', phone: '(555) 222-3344', image: '🎧' },
-      { id: 'r3', name: 'Golden Moments Videography', category: 'videography', rating: 4.8, reviews: 94, priceRange: '$1,500–2,800', location: 'City Center', description: 'Cinematic 4K wedding & event videography.', contact: 'hello@goldenmoments.com', phone: '(555) 333-4455', image: '🎥' },
-      { id: 'r4', name: 'Lens & Light Studios', category: 'videography', rating: 4.6, reviews: 73, priceRange: '$1,200–2,200', location: 'North County', description: 'Photo & video bundles with fast delivery.', contact: 'studio@lenslight.com', phone: '(555) 444-5566', image: '🎥' },
-      { id: 'r5', name: 'Elegant Furniture Rentals', category: 'rental-chairs', rating: 4.9, reviews: 156, priceRange: '$150–350/50', location: 'Metro Area', description: 'Premium furniture rentals: Chiavari chairs, lounge seating, tables, and decor.', contact: 'rentals@elegantfurniture.com', phone: '(555) 555-6677', image: '🪑🛋️' },
-      { id: 'r6', name: 'Party Furniture Co.', category: 'rental-chairs', rating: 4.5, reviews: 62, priceRange: '$100–250/50', location: 'Southside', description: 'Budget-friendly chair and furniture rentals for parties and outdoor events.', contact: 'orders@partyfurnitureco.com', phone: '(555) 666-7788', image: '🪑🛋️' },
-      { id: 'r7', name: 'Skyline Tent & Canopy', category: 'rental-canopy', rating: 4.8, reviews: 108, priceRange: '$800–2,000', location: 'Greater Metro', description: 'Frame tents & clear-span structures.', contact: 'info@skylinetent.com', phone: '(555) 777-8899', image: '⛺' },
-      { id: 'r8', name: 'Shade Pro Rentals', category: 'rental-canopy', rating: 4.6, reviews: 81, priceRange: '$500–1,500', location: 'East Valley', description: 'Affordable canopy & tent rentals.', contact: 'rent@shadepro.com', phone: '(555) 888-9900', image: '⛺' }
+        // ---------- BOUNDARY TESTS ----------
+        { stage: "Boundary Tests", text: "Cancel your plans and come see me tonight.", bad: "Okay... I guess I can reschedule. My friends will understand. Let me text them.", good1: "Bold move. I like it. But my plans are also bold. How about Thursday? Same energy.", good2: "I would, but my couch is giving me a very stern look. It needs me. It's fragile.", frame: "Hold your frame. Don't abandon your life for her whims." },
+        { stage: "Boundary Tests", text: "Give me your phone password. I want to check something.", bad: "Uh... it's 1234. But don't go through my stuff. Please. I have nothing to hide though.", good1: "Nice try. My phone contains state secrets and terrible selfies. For my eyes only.", good2: "You can have it after you tell me yours. And your mother's maiden name. And your deepest fear.", frame: "Playful deflection. Privacy is healthy." },
+        { stage: "Boundary Tests", text: "You should delete your Instagram. I don't like other girls looking at you.", bad: "Okay. I'll delete it. I don't need it anyway. If it makes you happy, I'll do it.", good1: "Delete Instagram? But how will people know what I ate for breakfast? Think of the followers.", good2: "You first. Then we'll talk. I'll even throw in my MySpace. That's how serious I am.", frame: "Don't yield to controlling behavior. Humorously assert autonomy." },
+        { stage: "Boundary Tests", text: "I'm going through your phone while you sleep. Just so you know.", bad: "Please don't. That's an invasion of privacy. I'd never go through your phone. Why would you?", good1: "Good luck. My gallery is 90% memes and 10% confusing receipts. You'll be bored.", good2: "Joke's on you. I have a decoy phone. The real one is in a safe. The safe is also a decoy.", frame: "Don't get angry. Use absurdity to reinforce the boundary." },
+        { stage: "Boundary Tests", text: "Stop hanging out with your female friends. I don't trust them.", bad: "Okay, I'll stop. I don't want you to feel uncomfortable. They're just friends though.", good1: "I'll stop hanging out with them when you stop hanging out with your male friends. Fair?", good2: "They've been around longer than you. They know my embarrassing stories. They're grandfathered in.", frame: "Don't sacrifice friendships for insecurity. Hold the line with humor." },
+        { stage: "Boundary Tests", text: "I need you to text me every hour when you're out.", bad: "Okay, I'll try. I might forget but I'll do my best. I don't want you to worry.", good1: "Every hour? I'll text you every 59 minutes just to assert dominance over the clock.", good2: "I'll text you when I have something worth saying. And when I miss you. Which is often.", frame: "Don't accept surveillance. Reframe as affection, not obligation." },
+        { stage: "Boundary Tests", text: "You can't go on that guys' trip. I don't allow it.", bad: "Okay. I won't go. I'd rather stay here with you anyway. It's fine. I'll tell them.", good1: "You don't 'allow' things. This isn't a permission slip. But I'll bring you a souvenir.", good2: "Noted. I'm going. But I'll call you every night and send terrible photos. Deal?", frame: "Firm boundary. No negotiation on autonomy." },
+        { stage: "Boundary Tests", text: "I'm moving in next month. I already told my landlord.", bad: "What? We haven't talked about this. That's a huge step. I'm not ready for that.", good1: "Bold. I like the initiative. But I need a say. Let's talk about it. Over dinner. You're paying.", good2: "You're moving in? Great. I've been looking for someone to take out the trash. Welcome home.", frame: "Don't panic. Assert your need for partnership in decisions." },
+        { stage: "Boundary Tests", text: "I told my mom she can stay with us for a month.", bad: "A month? You didn't even ask me. That's a long time. I need to be consulted.", good1: "A month? Perfect. I'll be in the garage. Building a second house. Send snacks.", good2: "Okay. But I'm charging rent. In baked goods. And I get the remote. Non-negotiable.", frame: "Acknowledge frustration playfully. Assert partnership." },
+        { stage: "Boundary Tests", text: "You're not allowed to have a girls' night out.", bad: "What? Why not? You go out with your friends. This isn't fair. You're being controlling.", good1: "I'm not asking permission. I'm informing you. But I'll bring you back dessert. Peace offering.", good2: "Funny. I don't remember signing that contract. But I'll think about it. While I'm out.", frame: "Don't argue about fairness. Just hold the boundary calmly." },
+
+        // ---------- BILL TRAPS (FRAME PERSPECTIVE) ----------
+        { stage: "Bill Traps", text: "So... you're getting the bill, right? (before ordering)", bad: "Uh, yeah. I mean, I guess. I didn't bring much cash. But yeah. I'll cover it.", good1: "I've got it tonight. You get the next one. That's how this works.", good2: "I'll cover it. But I'm not the default ATM. We trade off.", frame: "Generous by choice, not by default. You're a partner, not a payment plan. State reciprocity early and calmly." },
+        { stage: "Bill Traps", text: "I forgot my wallet. Can you cover me?", bad: "Oh no. Yeah, of course. Don't worry about it. I'll get it. It's fine. Really.", good1: "No problem. You've got the next one. I keep receipts in my head.", good2: "Sure. You're covering the next two. I'm very patient and very petty about it.", frame: "Help without resentment, but note it. Generosity isn't amnesia. One clean line, no sighing." },
+        { stage: "Bill Traps", text: "Let's split the bill. (after ordering three cocktails and lobster)", bad: "Uh, sure. Half of $180 is... yeah. Okay. I'll cover it. No problem.", good1: "Happy to split. I had a salad and water. I'll cover mine and the tip. You're at $168.", good2: "Split means split. I'll itemize. My total is $12. Yours is the rest.", frame: "Fair, precise, zero anger. You're not subsidizing her appetite, and you're not making a scene either." },
+        { stage: "Bill Traps", text: "I invited my friend to join us. She's ordering too, that's cool, right?", bad: "Oh. Yeah. Sure. That's fine. I'll just... pay for everyone I guess. No worries.", good1: "Cool. Separate checks. I'm covering mine and yours. She's on her own tab.", good2: "Sure. But I'm not funding the group outing. Separate tabs, keeps the friendship pure.", frame: "Boundary without drama. You're not a host and you're not a wallet. Warm tone, immovable content." },
+        { stage: "Bill Traps", text: "My ex always paid for everything. It's nice when a guy takes care of things.", bad: "I can take care of things! I'll pay for everything. I want to be a provider. Don't worry.", good1: "Your ex sounds generous. I'm generous too — just not in the same currency. I don't buy affection.", good2: "Good for him. I contribute. I don't fund. There's a difference, and it matters.", frame: "Never compete with the ex. Never audition for the provider role. Define your own terms and let her accept or not." },
+        { stage: "Bill Traps", text: "You should pay for my Uber home. That's the gentleman thing to do.", bad: "Yeah, of course. You're right. I'll order it right now. What's your address?", good1: "I'll get it. But 'should' is doing a lot of heavy lifting in that sentence. Ask nicely next time.", good2: "I was going to offer. Now it's a test. I'll still do it — this once.", frame: "Generous by choice, never by conscription. Name the framing out loud. Do the kind thing, refuse the obligation." },
+        { stage: "Bill Traps", text: "You make more than me. You should pay for most things.", bad: "You're right. I do make more. I should. Okay. I'll pay for most things. That's fair.", good1: "I'll contribute more because I earn more. But 'most things' isn't a category. Let's be specific.", good2: "I'll cover the big stuff. You cover the small stuff. And nobody keeps score. Deal?", frame: "Fairness with nuance, not blanket obligation. Proportional contribution is fine; being a wallet is not. Get specific numbers." },
+        { stage: "Bill Traps", text: "Can you cover me? I'll pay you back later, I promise.", bad: "Of course! Don't even worry about it. Pay me back whenever. Or never. It's fine. Seriously.", good1: "Sure. I'll cover it. Venmo me when you get home — I don't chase money, but I do remember it.", good2: "I'll get it. Just so you know, 'later' is a real date. I'm keeping the receipt. Politely.", frame: "Help fully, but don't pre-forgive the debt. A man who never mentions money owed gets treated like he doesn't need it. Casual, not stingy." },
+
+        // ---------- LOVE BOMBS (FRAME PERSPECTIVE) ----------
+        { stage: "Love Bombs", text: "I think I'm falling in love with you. (second date)", bad: "Oh wow. Me too! I think I love you too. This feels so right. I've never felt this way.", good1: "That's intense. I'm flattered. Also slightly concerned for your mental health. But flattered.", good2: "I like you too. Let's give it more than two dinners before we announce anything.", frame: "Acknowledge the warmth, don't mirror the intensity. Slow the tempo without rejecting her. Grounded beats swept-up." },
+        { stage: "Love Bombs", text: "I've never felt this way about anyone before.", bad: "Really? Me neither! You're so special. I can't believe we found each other.", good1: "That's a big statement. Either I'm exceptional or your exes set a very low bar. I'll take it either way.", good2: "Careful. I'm statistically improbable. Give it a month before you commit to that.", frame: "Playful skepticism. Don't get pulled into a fantasy frame. Intensity this early is data, not a compliment." },
+        { stage: "Love Bombs", text: "I bought you a gift. It's expensive. I hope you love it.", bad: "You didn't have to! Thank you so much! I feel bad. I'll get you something. I'll find something.", good1: "This is generous. It's early though. I'll accept it — and I'm not matching it out of guilt.", good2: "I love it. I'm also suspicious of it. But mostly love. Thank you.", frame: "Accept graciously, refuse the transactional frame. Expensive gifts this early create obligation. Name it lightly, keep the gift." },
+        { stage: "Love Bombs", text: "Let's go away for the weekend. I'll book everything. (third date)", bad: "Wow, that's fast. But okay! I'm in. Whatever you want. I'll clear my schedule.", good1: "Weekend trip on date three? Bold. Let's do a day trip first. Dip a toe in.", good2: "I like the energy. But I need at least five more dates of awkward silences before a shared hotel room.", frame: "Slow the escalation. Don't get swept up. Rapid intensity is the thing to notice, not the thing to reward." },
+        { stage: "Love Bombs", text: "You're my soulmate. I knew it the moment we met.", bad: "Me too! I felt it too. This is fate. I can't believe this is happening.", good1: "Soulmate? I don't believe in soulmates. But I believe in second dates. That's progress.", good2: "I'm glad you're excited. I'm still deciding if you're my 'person' or just a really good Tuesday.", frame: "Stay grounded. Reality over romance. Don't validate a fantasy you haven't earned yet." },
+        { stage: "Love Bombs", text: "I deleted all my dating apps for you. I'm only yours now.", bad: "You did? That's so sweet. I'll delete mine too. Right now. I don't need them. I only need you.", good1: "That's a big move. I'm not there yet. I'll let you know when I jump.", good2: "You deleted the apps? That's either romantic or a slight to your old matches. I'll take it as romantic.", frame: "Don't match premature commitment with your own. Be honest about your pace. Her sacrifices don't obligate yours." },
+        { stage: "Love Bombs", text: "I want to meet your family. I told my mom about you already.", bad: "You told your mom? That's so sweet. Yeah, let's meet families! I'll tell my mom right now.", good1: "You told your mom already? You move fast. I told my cat about you. That's step one.", good2: "Meeting the family is a big step. Happy to do it — after we survive our first real argument.", frame: "Warm but measured. Don't match premature escalation. Family introductions are a milestone, not a reflex." },
+        { stage: "Love Bombs", text: "I love you. (very early, very intense)", bad: "I love you too. I've been wanting to say it. I love you so much. This is amazing.", good1: "I love that you're bold. I'm not there yet. But I'm very fond of you. In a stable, non-scary way.", good2: "That's a lot of feeling. I'm honored. And I need a minute. Let me catch up.", frame: "Don't fake love to keep the peace. Honest pace beats mirrored intensity. She respects a man who can say 'not yet.'" },
+        { stage: "Love Bombs", text: "You're the best thing that's ever happened to me.", bad: "You're the best thing that's ever happened to me too. I can't imagine life without you now.", good1: "That's a lot of pressure. I'm just a guy who's decent at parallel parking and mediocre at cooking.", good2: "I'm honored. But your bar might be low. Let's get you out more.", frame: "Deflect the pedestal. Lower the stakes. Stay human. Pedestals are cages, not compliments." },
+        { stage: "Love Bombs", text: "I can't stop thinking about you. You're all I think about.", bad: "Same! I've been thinking about you constantly. I can't focus on anything else. You're my everything.", good1: "That's intense. I think about you too. But I also think about tacos and existential dread. Balanced diet.", good2: "You should get a hobby. I hear pottery is nice. And less obsessive.", frame: "Warm, but keep your own frame. Don't merge identities. A man with a full life is more attractive than one who's been absorbed." },
+        { stage: "Love Bombs", text: "I told all my friends we're basically together now.", bad: "Oh, okay! Yeah, we are. I'm yours. Whatever you want to tell them, tell them.", good1: "Your friends have a faster timeline than I do. Let me catch up before you publish the announcement.", good2: "I'm flattered. But you don't get to define us to your friends before you define us to me.", frame: "Refuse to have the relationship declared unilaterally. Warm, but the label is a two-person decision." },
+        { stage: "Love Bombs", text: "I feel like I've known you my whole life.", bad: "Me too! It's like we were made for each other. This is destiny. I've never connected like this.", good1: "That's a nice feeling. It's also week two. Let's see if you still feel that way after my snoring.", good2: "Strong chemistry isn't the same as history. But I like where this is going. Slow and steady.", frame: "Enjoy the chemistry without upgrading it to destiny. Intensity is not evidence of compatibility." },
+
+        // ---------- CHORE WARS (FRAME PERSPECTIVE) ----------
+        { stage: "Chore Wars", text: "I do everything around here. You don't help at all.", bad: "You're right. I'm so sorry. I've been terrible. Give me a list and I'll do every single thing on it. I'll do better. I promise.", good1: "Let's check that. I handle the trash, the yard, the cars, and the bills. If I'm missing something, name it and I'll own it. But 'everything' isn't accurate.", good2: "I pull my weight. If you feel like you're carrying more, let's split it properly. But I'm not accepting a verdict, I'm offering a negotiation.", frame: "You're an equal adult, not an employee being reviewed. Take inventory calmly. Don't accept an inflated accusation, don't retaliate either." },
+        { stage: "Chore Wars", text: "You do it so much better than me. You should just handle it.", bad: "Okay, I'll do it. It's fine. I don't mind. You don't have to help. I'll handle everything.", good1: "I do it better. That's not a reason for you to opt out. Watch me once, then it's yours.", good2: "Nice try. I'm not absorbing your chores because you framed it as a compliment. That's flattery with a job attached.", frame: "Refuse weaponized incompetence without lecturing. You're not her supervisor, but you're not her servant either." },
+        { stage: "Chore Wars", text: "I asked you to do this three days ago.", bad: "I know, I'm sorry, I'm so sorry. I'm the worst. I'll do it right now. Please don't be upset with me.", good1: "You're right, I dropped it. I'll handle it now. That's on me, no excuse.", good2: "Fair. I forgot. I'll do it now — and I'll set a reminder so it doesn't happen twice.", frame: "Own the miss in one clean sentence. No groveling, no over-apologizing. Competence, not contrition." },
+        { stage: "Chore Wars", text: "I keep score. I did dishes 12 times this month. You did 3.", bad: "You're counting? That's insane. I do plenty. I just don't write it down like an accountant. This is ridiculous.", good1: "If we're keeping score, let's do it properly. Full list, both of us. I'll take the scoreboard seriously if you will.", good2: "I'm not going to litigate a spreadsheet with you. If the balance is off, I'll take on more. But let's not turn our home into a courtroom.", frame: "Refuse the scorekeeper frame without getting defensive. You're not on trial. Either rebalance or decline the game." },
+        { stage: "Chore Wars", text: "Why do I have to ask you to do things? You should just see them.", bad: "I'm not a mind reader. Just tell me what you want and I'll do it. I can't know everything you're thinking.", good1: "Fair point. I'll take full ownership of a few things so you never have to ask. Kitchen and trash are mine. Permanent.", good2: "You shouldn't have to manage me. I'll do a daily walkthrough. If I miss something, tell me once and it becomes mine.", frame: "Accept the real critique — you're being managed — and remove the need for management. That's dominance, not submission." },
+        { stage: "Chore Wars", text: "You started the laundry but didn't finish it. It's still in the machine.", bad: "I was going to get to it! I just forgot. The machine is fine. It's not going anywhere. Stop stressing.", good1: "You're right. I left it half-done. I'll finish it now and set a timer next time.", good2: "That's on me. Half-finished jobs are worse than not starting. I'll finish it and own laundry going forward.", frame: "Half-finished work is a competence issue, not an emotional one. Fix it plainly. No blame-shifting to the machine or her tone." },
+        { stage: "Chore Wars", text: "My ex used to do the dishes without being asked.", bad: "Well I'm not your ex! You can't compare me to him. That's not fair. I do things differently. Why do you always bring him up?", good1: "I'm not your ex. I'm not going to be compared to him or compete with a memory. If dishes matter, they're mine. Done.", good2: "I don't compete with ghosts. But if the dishes are the issue, I'll own them. Just don't measure me against someone else.", frame: "Refuse the comparison frame entirely. You're not auditioning for a role someone else vacated." },
+        { stage: "Chore Wars", text: "I'm not your maid. Stop leaving your stuff everywhere.", bad: "I never said you were my maid! I just forget sometimes. Why are you always so angry about everything? This is an overreaction.", good1: "You're not my maid. You're my partner. I'll pick up after myself. Starting tonight, nightly sweep.", good2: "Fair. My stuff, my responsibility. I'll do a pass every night. If I slip, call it once and I'll fix it without the lecture.", frame: "Agree with the principle, reject the hostility, take action. No counter-attack about her tone." },
+        { stage: "Chore Wars", text: "You never help with the mental load. I have to remember everything.", bad: "What mental load? I remember things too! I remember the important stuff. You just worry too much about small things.", good1: "You're right. The remembering is the actual work. I'll take full ownership of the bills, the cars, and the appointments. Yours to forget.", good2: "That's a real complaint. Pick two domains and I'll run them completely — no reminders, no check-ins. Tell me which.", frame: "Validate the invisible labor and take permanent ownership of something. Dismissing the mental load is the weakest possible move." },
+        { stage: "Chore Wars", text: "You don't appreciate anything I do around here.", bad: "I do appreciate it! I say thank you. I don't know what you want from me. I can't read your mind. I'm doing my best here.", good1: "You're right. I don't say it enough. Thank you. Genuinely. The house runs because of you and I take that for granted.", good2: "I appreciate you. I'm just bad at saying it out loud. Let me fix that starting now: thank you. For all of it.", frame: "Direct gratitude, zero deflection. Appreciation is free and it's the highest-return move available." },
+        { stage: "Chore Wars", text: "You left your socks on the floor again. I'm not picking them up anymore.", bad: "It's just socks! Why is this such a big deal? I'll pick them up. Relax. You're overreacting to a piece of fabric.", good1: "Fair. Socks are mine to handle. Hamper's right there. I'll use it.", good2: "You're right. And you shouldn't have to ask. Socks, hamper, done. No more commentary needed.", frame: "Don't minimize her frustration over a small thing. It's never about the socks. Fix it in one line and move on." },
+        { stage: "Chore Wars", text: "I'm tired of being the only one who cleans the bathroom.", bad: "I cleaned it last month! Why do you act like I never do anything? This is ridiculous. You always make me the bad guy.", good1: "You're right. The bathroom is mine now. Every Sunday. You'll never touch a toilet brush again.", good2: "Fair. I'll take the bathroom permanently. It's mine. That ends this conversation for good.", frame: "Take total ownership of one recurring battleground. Ending a loop is strength; re-litigating it is weakness." },
+        { stage: "Chore Wars", text: "You should be grateful I even do this much.", bad: "I am grateful! I'm so grateful. Thank you. I don't know what I'd do without you. You do so much. I'm lucky to have you.", good1: "I am grateful. But 'grateful' isn't the same as 'indebted.' We both live here. We both contribute.", good2: "I appreciate you. I don't do guilt as a currency though. Let's keep it even and keep it simple.", frame: "Refuse the debt frame. Gratitude is healthy; owing her your compliance is not. Warm but immovable." },
+        { stage: "Chore Wars", text: "If you loved me, you'd just do it without me asking.", bad: "I do love you! Okay, I'll do it. Just tell me what to do and I'll do it. I'll do anything. Don't be upset.", good1: "I do love you. That's not the same as agreeing to be managed. Tell me what's bugging you and I'll take it over for good.", good2: "Love isn't a compliance test. But I hear you — you're tired of asking. Name it and it's mine permanently.", frame: "Reject the emotional ultimatum without rejecting her. Separate love from obedience." }
     ];
 
-    let expenses = [...DEFAULT_EXPENSES];
-    let vendors = [...DEFAULT_VENDORS];
-    let savedEvents = [...DEFAULT_SAVED_EVENTS];
-    let settings = {...DEFAULT_SETTINGS};
-
-    function loadFromStorage() {
-      try {
-        expenses = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'expenses')) || [...DEFAULT_EXPENSES];
-        vendors = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'vendors')) || [...DEFAULT_VENDORS];
-        savedEvents = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'saved_events')) || [...DEFAULT_SAVED_EVENTS];
-        settings = JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'settings')) || {...DEFAULT_SETTINGS};
-      } catch(e) {
-        expenses = [...DEFAULT_EXPENSES];
-        vendors = [...DEFAULT_VENDORS];
-        savedEvents = [...DEFAULT_SAVED_EVENTS];
-        settings = {...DEFAULT_SETTINGS};
-      }
+    const seenTexts = new Set();
+    const uniqueShitTests = [];
+    for (const test of shitTests) {
+        const key = test.text.toLowerCase().trim();
+        if (!seenTexts.has(key)) {
+            seenTexts.add(key);
+            uniqueShitTests.push(test);
+        }
     }
 
-    function saveToStorage() {
-      try {
-        localStorage.setItem(STORAGE_PREFIX + 'expenses', JSON.stringify(expenses));
-        localStorage.setItem(STORAGE_PREFIX + 'vendors', JSON.stringify(vendors));
-        localStorage.setItem(STORAGE_PREFIX + 'saved_events', JSON.stringify(savedEvents));
-        localStorage.setItem(STORAGE_PREFIX + 'settings', JSON.stringify(settings));
-      } catch(e) {}
+    console.log("Total unique shit tests loaded:", uniqueShitTests.length);
+
+    const stagesList = ["First Contact", "Dating Stage", "Relationship", "Married Life", "Living Together", "Texting", "Comfort Tests", "Value Tests", "Qualification Tests", "Boundary Tests", "Bill Traps", "Love Bombs", "Chore Wars"];
+
+    let activeStageFilter = "All";
+    let responseVisibility = {};
+
+    const filtersContainer = document.getElementById("stageFilters");
+    const cardsGrid = document.getElementById("cardsGrid");
+    const resetBtn = document.getElementById("resetAllResponsesBtn");
+    const testCountEl = document.getElementById("testCount");
+
+    function buildFilters() {
+        const stages = ["All", ...stagesList];
+        filtersContainer.innerHTML = "";
+        stages.forEach(st => {
+            const chip = document.createElement("div");
+            chip.classList.add("stage-chip");
+            if (activeStageFilter === st) chip.classList.add("active");
+            chip.innerText = st;
+            chip.addEventListener("click", () => {
+                activeStageFilter = st;
+                renderCards();
+                buildFilters();
+            });
+            filtersContainer.appendChild(chip);
+        });
     }
 
-    function showToast(message, type = 'info', duration = 4000) {
-      const container = document.getElementById('toastContainer');
-      const toast = document.createElement('div');
-      toast.className = 'toast';
-      const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' };
-      toast.innerHTML = `<span class="text-xl">${icons[type] || icons.info}</span><span class="text-sm font-medium">${message}</span>`;
-      container.appendChild(toast);
-      setTimeout(() => { toast.classList.add('removing'); setTimeout(() => toast.remove(), 300); }, duration);
+    function escapeHtml(str) {
+        return String(str).replace(/[&<>]/g, m => m === '&' ? '&amp;' : m === '<' ? '&lt;' : '&gt;');
     }
 
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
-      const active = document.getElementById(`tab-${tabId}`);
-      if (active) active.classList.add('active-tab');
-      document.querySelectorAll('.desktop-nav .tab-link').forEach(l => { l.style.color = l.dataset.tab === tabId ? '#38bdf8' : ''; });
-      document.querySelectorAll('.mobile-nav-link').forEach(l => { l.classList.toggle('active-mob', l.dataset.tab === tabId); });
-      if (tabId === 'dashboard') updateDashboard();
-      if (tabId === 'vendors') renderVendors();
-      if (tabId === 'recommended') renderRecommendedVendors('all');
+    function renderCards() {
+        const filtered = activeStageFilter === "All"
+            ? uniqueShitTests
+            : uniqueShitTests.filter(t => t.stage === activeStageFilter);
+
+        cardsGrid.innerHTML = "";
+
+        filtered.forEach((test) => {
+            const globalIdx = uniqueShitTests.indexOf(test);
+            const card = document.createElement("div");
+            card.className = "test-card";
+            card.innerHTML = `
+                <div class="test-header">
+                    <span class="stage-badge">${escapeHtml(test.stage)}</span>
+                    <i class="fas fa-comment-dots" style="color:#FFB347"></i>
+                </div>
+                <div class="test-quote">"${escapeHtml(test.text)}"</div>
+                <div class="response-buttons">
+                    <button class="resp-btn good" data-idx="${globalIdx}">✅ Good 1</button>
+                    <button class="resp-btn good2" data-idx="${globalIdx}">✅✅ Good 2</button>
+                    <button class="resp-btn bad" data-idx="${globalIdx}">❌ Bad Reply</button>
+                    <button class="resp-btn frame" data-idx="${globalIdx}">🎭 Frame</button>
+                </div>
+                <div id="resp-${globalIdx}-good1" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-good2" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-bad" class="response-content hidden-resp"></div>
+                <div id="resp-${globalIdx}-frame" class="response-content hidden-resp"></div>
+            `;
+            cardsGrid.appendChild(card);
+
+            const good1Div = document.getElementById(`resp-${globalIdx}-good1`);
+            const good2Div = document.getElementById(`resp-${globalIdx}-good2`);
+            const badDiv = document.getElementById(`resp-${globalIdx}-bad`);
+            const frameDiv = document.getElementById(`resp-${globalIdx}-frame`);
+
+            good1Div.innerHTML = `<i class="fas fa-laugh-beam"></i> <strong>Good Response #1:</strong><br> ${escapeHtml(test.good1)}`;
+            good2Div.innerHTML = `<i class="fas fa-laugh-squint"></i> <strong>Good Response #2:</strong><br> ${escapeHtml(test.good2)}`;
+            badDiv.innerHTML = `<i class="fas fa-skull-crossbones"></i> <strong>Why It Fails:</strong><br> ${escapeHtml(test.bad)}`;
+            frameDiv.innerHTML = `<i class="fas fa-chalkboard-user"></i> <strong>Frame Mastery:</strong><br> ${escapeHtml(test.frame)}`;
+
+            if (responseVisibility[`${globalIdx}_good1`]) good1Div.classList.remove("hidden-resp");
+            if (responseVisibility[`${globalIdx}_good2`]) good2Div.classList.remove("hidden-resp");
+            if (responseVisibility[`${globalIdx}_bad`]) badDiv.classList.remove("hidden-resp");
+            if (responseVisibility[`${globalIdx}_frame`]) frameDiv.classList.remove("hidden-resp");
+
+            const toggle = (type, divEl) => {
+                const key = `${globalIdx}_${type}`;
+                responseVisibility[key] = !responseVisibility[key];
+                divEl.classList.toggle("hidden-resp", !responseVisibility[key]);
+            };
+
+            card.querySelector(".resp-btn.good").addEventListener("click", () => toggle("good1", good1Div));
+            card.querySelector(".resp-btn.good2").addEventListener("click", () => toggle("good2", good2Div));
+            card.querySelector(".resp-btn.bad").addEventListener("click", () => toggle("bad", badDiv));
+            card.querySelector(".resp-btn.frame").addEventListener("click", () => toggle("frame", frameDiv));
+        });
+
+        if (testCountEl) {
+            testCountEl.textContent = `Showing ${filtered.length} of ${uniqueShitTests.length} unique tests`;
+        }
     }
 
-    function updateDashboard() {
-      const te = savedEvents.length;
-      const tr = savedEvents.reduce((s, e) => s + (e.revenue || 0), 0);
-      const tc = savedEvents.reduce((s, e) => s + (e.totalCost || 0), 0);
-      const np = tr - tc;
-      document.getElementById('dashboardTotalEvents').textContent = te;
-      document.getElementById('dashboardTotalRevenue').textContent = `$${tr.toLocaleString()}`;
-      document.getElementById('dashboardTotalCosts').textContent = `$${tc.toLocaleString()}`;
-      document.getElementById('dashboardNetProfit').textContent = `$${np.toLocaleString()}`;
-      document.getElementById('dashboardEventCount').textContent = `${te} event${te !== 1 ? 's' : ''}`;
+    function resetAllResponses() {
+        responseVisibility = {};
+        renderCards();
     }
 
-    function renderVendors(filter = 'all', search = '') {
-      const grid = document.getElementById('vendorsGrid');
-      const noMsg = document.getElementById('noVendorsMessage');
-      if (!grid) return;
-      let filtered = vendors;
-      if (filter !== 'all') filtered = filtered.filter(v => v.category === filter);
-      if (search) filtered = filtered.filter(v => v.name.toLowerCase().includes(search.toLowerCase()));
-      if (filtered.length === 0) { grid.innerHTML = ''; noMsg.classList.remove('hidden'); return; }
-      noMsg.classList.add('hidden');
-      const icons = { dj: '🎧', videography: '🎥', 'rental-chairs': '🪑🛋️', 'rental-canopy': '⛺', catering: '🍽️', venue: '🏛️', other: '📦' };
-      grid.innerHTML = filtered.map(v => `<div class="glass-card rounded-2xl p-5 sm:p-6 hover:border-[#38bdf8]/30 transition-all duration-300 group"><div class="flex items-start justify-between mb-4"><div class="flex items-center gap-3"><span class="text-2xl">${icons[v.category] || '📦'}</span><div><h3 class="font-semibold text-sm">${v.name}</h3><span class="text-xs text-[#38bdf8]">${v.category.replace('-', ' ')}</span></div></div></div><div class="space-y-1 text-xs text-gray-400">${v.contact ? `<div>👤 ${v.contact}</div>` : ''}${v.email ? `<div>📧 ${v.email}</div>` : ''}${v.phone ? `<div>📞 ${v.phone}</div>` : ''}</div></div>`).join('');
+    const tabs = {
+        heroTab: document.getElementById("heroTab"),
+        decoderTab: document.getElementById("decoderTab"),
+        masteryTab: document.getElementById("masteryTab"),
+        ebookTab: document.getElementById("ebookTab")
+    };
+    const desktopNavLinks = document.querySelectorAll("#desktopNavLinks a");
+    const mobileNavLinksItems = document.querySelectorAll("#mobileNavLinks a");
+
+    function activateTab(tabId) {
+        Object.keys(tabs).forEach(id => { if (tabs[id]) tabs[id].classList.remove("active-tab-content"); });
+        if (tabs[tabId]) tabs[tabId].classList.add("active-tab-content");
+        desktopNavLinks.forEach(link => {
+            link.classList.remove("active-tab");
+            if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab");
+        });
+        mobileNavLinksItems.forEach(link => {
+            link.classList.remove("active-tab-mobile");
+            if (link.getAttribute("data-tab") === tabId) link.classList.add("active-tab-mobile");
+        });
+        if (tabId === "decoderTab") renderCards();
+        closeMobileMenu();
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function renderRecommendedVendors(filter = 'all') {
-      const grid = document.getElementById('recommendedGrid');
-      if (!grid) return;
-      let filtered = filter === 'all' ? recommendedVendors : recommendedVendors.filter(v => v.category === filter);
-      const stars = (rating) => '⭐'.repeat(Math.floor(rating)) + (rating % 1 >= 0.5 ? '½' : '');
-      grid.innerHTML = filtered.map(v => `<div class="glass-card rounded-2xl p-5 sm:p-6 hover:border-[#38bdf8]/30 transition-all duration-300 group"><div class="flex items-start gap-4 mb-4"><div class="text-4xl">${v.image}</div><div class="flex-1"><h3 class="font-semibold text-white text-sm sm:text-base">${v.name}</h3><p class="text-xs text-[#38bdf8] uppercase tracking-wider mt-1">${v.category.replace('-', ' ')}</p><div class="flex items-center gap-1 mt-1"><span class="text-yellow-400 text-xs">${stars(v.rating)}</span><span class="text-gray-500 text-xs">${v.rating} (${v.reviews})</span></div></div></div><p class="text-gray-400 text-xs sm:text-sm mb-3">${v.description}</p><div class="space-y-1 text-xs text-gray-500 mb-4"><div>💰 ${v.priceRange}</div><div>📍 ${v.location}</div></div></div>`).join('');
+    function openMobileMenu() {
+        document.getElementById("mobileMenuOverlay").classList.add("active");
+        document.getElementById("mobileMenuContainer").classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+    function closeMobileMenu() {
+        document.getElementById("mobileMenuOverlay").classList.remove("active");
+        document.getElementById("mobileMenuContainer").classList.remove("open");
+        document.body.style.overflow = "";
     }
 
-    loadFromStorage();
-
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('eventName').value = settings.eventName || '';
-      document.getElementById('guestCount').value = settings.guestCount || '0';
-      document.getElementById('ticketPrice').value = settings.ticketPrice || '0';
-      document.getElementById('targetProfit').value = settings.targetProfit || '0';
-
-      document.querySelectorAll('.desktop-nav .tab-link').forEach(l => { l.addEventListener('click', () => switchTab(l.dataset.tab)); });
-      document.querySelectorAll('.mobile-nav-link').forEach(l => { l.addEventListener('click', (e) => { e.preventDefault(); switchTab(l.dataset.tab); closeMobileMenu(); }); });
-
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuOverlay = document.getElementById('menuOverlay');
-      function openMobileMenu() { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-      function closeMobileMenu() { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-      document.getElementById('hamburgerBtn').addEventListener('click', openMobileMenu);
-      document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
-      menuOverlay.addEventListener('click', closeMobileMenu);
-
-      document.getElementById('hero-cta').addEventListener('click', () => switchTab('plan'));
-
-      document.querySelectorAll('.rec-filter').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('.rec-filter').forEach(b => { b.classList.remove('active', 'bg-[#38bdf8]/20', 'text-[#38bdf8]'); b.classList.add('text-gray-400', 'border-white/10'); }); btn.classList.add('active', 'bg-[#38bdf8]/20', 'text-[#38bdf8]'); btn.classList.remove('text-gray-400', 'border-white/10'); renderRecommendedVendors(btn.dataset.filter); }); });
-
-      updateDashboard();
-      renderVendors();
-      renderRecommendedVendors('all');
+    document.getElementById("menuToggleBtn").addEventListener("click", openMobileMenu);
+    document.getElementById("closeMenuBtn").addEventListener("click", closeMobileMenu);
+    document.getElementById("mobileMenuOverlay").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("mobileMenuOverlay")) closeMobileMenu();
     });
-  </script>
+    desktopNavLinks.forEach(link => link.addEventListener("click", (e) => {
+        e.preventDefault();
+        activateTab(link.getAttribute("data-tab"));
+    }));
+    mobileNavLinksItems.forEach(link => link.addEventListener("click", (e) => {
+        e.preventDefault();
+        activateTab(link.getAttribute("data-tab"));
+    }));
+    document.getElementById("heroCtaBtn").addEventListener("click", () => activateTab("decoderTab"));
+    resetBtn.addEventListener("click", resetAllResponses);
+
+    document.getElementById("downloadEbookBtn").addEventListener("click", function() {
+        const content = `Shit Test Mastery: The Complete Guide
+=====================================
+
+By ShitTest.Guru
+
+TABLE OF CONTENTS
+-----------------
+1. Introduction: What Is a Shit Test?
+2. The Golden Rule: Amused Mastery
+3. First Contact Tests
+4. Dating Stage Landmines
+5. Relationship Chaos
+6. Married Life Black Belts
+7. Living Together Survival
+8. Texting Traps
+9. Comfort Tests
+10. Value Tests
+11. Qualification Tests
+12. Boundary Tests
+13. Bill Traps (Frame Perspective)
+14. Love Bombs (Frame Perspective)
+15. Chore Wars (Frame Perspective)
+16. Frame Control 101
+17. The Ultimate Cheat Sheet
+
+CHAPTER 1: INTRODUCTION
+-----------------------
+A shit test is subconscious vetting. She throws these to see if you have:
+1. Emotional stability
+2. Frame control
+3. Humor under pressure
+4. Leadership
+
+The Golden Rule: She wants to see if you stay cool, amused, and unbothered.
+
+CHAPTER 2: FIRST CONTACT TESTS
+------------------------------
+Test: "Hey." (low energy)
+Bad: "Hey beautiful! I'm Mike, I like tacos."
+Good: "Whoa, save some charisma. I'll wait for part two."
+Frame: You're the prize.
+
+CHAPTER 3: BILL TRAPS (FRAME PERSPECTIVE)
+-----------------------------------------
+Governing principle: Generous, never obligated.
+Contribute proportionally. Fund nothing by default. Never compete with
+the ex's wallet. Never pre-forgive a debt.
+
+Test: "You should pay for my Uber home. That's the gentleman thing to do."
+Bad: "Yeah, of course. I'll order it right now."
+Good 1: "I'll get it. But 'should' is doing a lot of heavy lifting in that sentence."
+Good 2: "I was going to offer. Now it's a test. I'll still do it — this once."
+Frame: Generous by choice, never by conscription.
+
+Test: "My ex always paid for everything. It's nice when a guy takes care of things."
+Bad: "I can take care of things! I'll pay for everything."
+Good 1: "Your ex sounds generous. I'm generous too — just not in the same currency."
+Good 2: "Good for him. I contribute. I don't fund. There's a difference."
+Frame: Never compete with the ex. Never audition for the provider role.
+
+CHAPTER 4: LOVE BOMBS (FRAME PERSPECTIVE)
+-----------------------------------------
+Governing principle: Warm, never swept.
+Match her feeling with honesty, not with mirrored intensity. Slow the
+tempo without rejecting her. Refuse unilateral labels.
+
+Test: "I think I'm falling in love with you." (second date)
+Bad: "Me too! I love you too. This feels so right."
+Good 1: "That's intense. I'm flattered. Also slightly concerned. But flattered."
+Good 2: "I like you too. Let's give it more than two dinners."
+Frame: Grounded beats swept-up.
+
+Test: "I love you." (very early, very intense)
+Bad: "I love you too. I've been wanting to say it."
+Good 1: "I love that you're bold. I'm not there yet. But I'm very fond of you."
+Good 2: "That's a lot of feeling. I'm honored. I need a minute. Let me catch up."
+Frame: Honest pace beats mirrored intensity.
+
+CHAPTER 5: CHORE WARS (FRAME PERSPECTIVE)
+-----------------------------------------
+Governing principle: Equal adult, not subordinate.
+Dominance through competence beats dominance through refusal. Take
+total ownership of your share permanently. Refuse the parent-child
+dynamic. Never litigate the scoreboard.
+
+Test: "I do everything around here. You don't help at all."
+Bad: "You're right. I'm so sorry. Give me a list and I'll do every single thing."
+Good 1: "Let's check that. I handle the trash, the yard, the cars, and the bills. Name what I'm missing."
+Good 2: "I pull my weight. If the balance is off, let's split it properly. I'm not accepting a verdict."
+Frame: Equal adult, not an employee being reviewed.
+
+Test: "You should be grateful I even do this much."
+Bad: "I am grateful! I'm so grateful. Thank you."
+Good 1: "I am grateful. But 'grateful' isn't the same as 'indebted.' We both live here."
+Good 2: "I don't do guilt as a currency. Let's keep it even."
+Frame: Gratitude is healthy. Owing her your compliance is not.
+
+THE MASTER'S MINDSET
+You will fail tests. The master laughs mid-fail.
+
+Strong frame = warm, immovable, generous by choice, never by obligation.
+
+"When in doubt, make it weirder."
+
+© ShitTest.Guru`;
+        const blob = new Blob([content], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Shit_Test_Mastery_Ebook.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        const btn = document.getElementById("downloadEbookBtn");
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+    });
+
+    buildFilters();
+    renderCards();
+    activateTab("heroTab");
+</script>
 </body>
 </html>
